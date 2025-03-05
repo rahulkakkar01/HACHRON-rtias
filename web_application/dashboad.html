@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Audit Dashboard - Quantum Leap</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2><i class="fas fa-warehouse"></i> Inventory</h2>
+        <ul>
+            <li onclick="showSection('dashboard-section')"><i class="fas fa-tachometer-alt"></i> Dashboard</li>
+            <li onclick="showSection('stock-section')"><i class="fas fa-cubes"></i> Stock Levels</li>
+            <li onclick="showSection('audits-section')"><i class="fas fa-history"></i> Recent Audits</li>
+            <li onclick="showSection('add-audit-section')"><i class="fas fa-plus-circle"></i> Add Audit</li>
+            <li><i class="fas fa-chart-line"></i> Reports (Coming Soon)</li>
+            <li><i class="fas fa-cog"></i> Settings (Coming Soon)</li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <header>
+            <h1><i class="fas fa-sync-alt"></i> Real-Time Inventory Audit</h1>
+        </header>
+
+        <section id="dashboard-section" class="section">
+            <div class="dashboard">
+                <div class="folder red"><i class="fas fa-box-open"></i> Products</div>
+                <div class="folder blue"><i class="fas fa-building"></i> Warehouse A</div>
+                <div class="folder yellow"><i class="fas fa-building"></i> Warehouse B</div>
+            </div>
+            <div class="container">
+              <div class="audit-box" id="full-inventory">
+                  <h2>Full Physical Inventory</h2>
+                  <p>Status: <span id="inventory-status">Not Started</span></p>
+                  <button onclick="window.location.href='start-audit.html'">Start Audit</button>
+              </div>
+              <div class="audit-box" id="cycle-counting">
+                  <h2>Cycle Counting</h2>
+                  <p>Status: <span id="cycle-status">Not Started</span></p>
+                  <button onclick="startAudit('Cycle Counting')">Start Audit</button>
+                  <button onclick="completeAudit('Cycle Counting')">Complete Audit</button>
+              </div>
+              <div class="audit-box" id="spot-checks">
+                  <h2>Spot Checks</h2>
+                  <p>Status: <span id="spot-status">Not Started</span></p>
+                  <button onclick="startAudit('Spot Checks')">Start Audit</button>
+                  <button onclick="completeAudit('Spot Checks')">Complete Audit</button>
+              </div>
+              <div class="audit-box" id="perpetual-inventory">
+                  <h2>Perpetual Inventory</h2>
+                  <p>Status: <span id="perpetual-status">Active</span></p>
+                  <p>This is continuously updating.</p>
+              </div>
+              <div class="audit-box">
+                  <h2>Audit Activity Log</h2>
+                  <ul class="audit-list" id="audit-log">
+                      <li>No activity yet.</li>
+                  </ul>
+              </div>
+          </div>
+        </section>
+
+        <section id="stock-section" class="section" style="display: none;">
+            <div class="storage">
+                <h2>Stock Levels</h2>
+                <div class="chart"><i class="fas fa-chart-area"></i> [Graph Placeholder]</div>
+            </div>
+        </section>
+
+        <section id="audits-section" class="section" style="display: none;">
+            <div class="recent-files">
+                <h2>Recent Audits</h2>
+                <ul id="audit-list"></ul>
+            </div>
+        </section>
+
+        <section id="add-audit-section" class="section" style="display: none;">
+            <div class="add-audit">
+                <h2>Add New Audit</h2>
+                <form id="audit-form">
+                    <input type="text" id="item_name" placeholder="Item Name" required>
+                    <input type="text" id="warehouse" placeholder="Warehouse" required>
+                    <input type="number" id="quantity" placeholder="Quantity" required>
+                    <input type="text" id="status" placeholder="Status" required>
+                    <button type="submit">Add Audit</button>
+                </form>
+            </div>
+        </section>
+
+    </div>
+    <footer>
+        <p>&copy; 2025 Warehouse Audit Systems</p>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', fetchAudits);
+
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.style.display = 'none');
+            document.getElementById(sectionId).style.display = 'block';
+        }
+
+        async function fetchAudits() {
+            try {
+                let response = await fetch('http://127.0.0.1:5000/api/audits');
+                let audits = await response.json();
+
+                let auditList = document.getElementById('audit-list');
+                auditList.innerHTML = '';
+
+                audits.forEach(audit => {
+                    let li = document.createElement('li');
+                    li.textContent = `${audit.item_name} - ${audit.warehouse} - ${audit.quantity} - ${audit.status} (${new Date(audit.audit_date).toLocaleString()})`;
+                    auditList.appendChild(li);
+                });
+            } catch (error) {
+                console.error('Error fetching audits:', error);
+            }
+        }
+
+        document.getElementById('audit-form').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            let auditData = {
+                item_name: document.getElementById('item_name').value,
+                warehouse: document.getElementById('warehouse').value,
+                quantity: document.getElementById('quantity').value,
+                status: document.getElementById('status').value
+            };
+
+            try {
+                let response = await fetch('http://127.0.0.1:5000/api/audits', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(auditData)
+                });
+
+                if (response.ok) {
+                    alert('Audit added successfully');
+                    fetchAudits();
+                    document.getElementById('audit-form').reset();
+                } else {
+                    let errorData = await response.json();
+                    alert(`Error adding audit: ${errorData.error || errorData.message}`);
+                }
+            } catch (error) {
+                alert('Error adding audit. Please check the console for more details.');
+                console.error('Error adding audit:', error);
+            }
+        });
+
+        function startAudit(type) {
+            document.getElementById(type.toLowerCase().replace(/ /g, '-') + '-status').textContent = 'In Progress';
+            document.getElementById('audit-log').innerHTML += `<li>Started ${type} at ${new Date().toLocaleString()}</li>`;
+        }
+        function completeAudit(type){
+            document.getElementById(type.toLowerCase().replace(/ /g, '-') + '-status').textContent = 'Completed';
+            document.getElementById('audit-log').innerHTML += `<li>Completed ${type} at ${new Date().toLocaleString()}</li>`;
+        }
+    </script>
+</body>
+</html>
