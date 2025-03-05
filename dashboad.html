@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Audit Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Inventory</h2>
+        <ul>
+            <li>Dashboard</li>
+            <li>Stock Levels</li>
+            <li>Recent Audits</li>
+            <li>Reports</li>
+            <li>Settings</li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <header>
+            <h1>Real-Time Inventory Audit</h1>
+        </header>
+        <section class="dashboard">
+            <div class="folder red">Products</div>
+            <div class="folder blue">Warehouse A</div>
+            <div class="folder yellow">Warehouse B</div>
+        </section>
+        <section class="recent-files">
+            <h2>Recent Audits</h2>
+            <ul id="audit-list"></ul>
+        </section>
+        <section class="storage">
+            <h2>Stock Levels</h2>
+            <div class="chart">[Graph Placeholder]</div>
+        </section>
+
+        <!-- New Content Start -->
+        <div class="container">
+            <!-- Full Physical Inventory -->
+            <div class="audit-box" id="full-inventory">
+                <h2>Full Physical Inventory</h2>
+                <p>Status: <span id="inventory-status">Not Started</span></p>
+                <button onclick="startAudit('Full Physical Inventory')">Start Audit</button>
+                <button onclick="completeAudit('Full Physical Inventory')">Complete Audit</button>
+            </div>
+
+            <!-- Cycle Counting -->
+            <div class="audit-box" id="cycle-counting">
+                <h2>Cycle Counting</h2>
+                <p>Status: <span id="cycle-status">Not Started</span></p>
+                <button onclick="startAudit('Cycle Counting')">Start Audit</button>
+                <button onclick="completeAudit('Cycle Counting')">Complete Audit</button>
+            </div>
+
+            <!-- Spot Checks -->
+            <div class="audit-box" id="spot-checks">
+                <h2>Spot Checks</h2>
+                <p>Status: <span id="spot-status">Not Started</span></p>
+                <button onclick="startAudit('Spot Checks')">Start Audit</button>
+                <button onclick="completeAudit('Spot Checks')">Complete Audit</button>
+            </div>
+
+            <!-- Perpetual Inventory -->
+            <div class="audit-box" id="perpetual-inventory">
+                <h2>Perpetual Inventory</h2>
+                <p>Status: <span id="perpetual-status">Active</span></p>
+                <p>This is continuously updating.</p>
+            </div>
+
+            <!-- Audit Activity Log -->
+            <div class="audit-box">
+                <h2>Audit Activity Log</h2>
+                <ul class="audit-list" id="audit-log">
+                    <li>No activity yet.</li>
+                </ul>
+            </div>
+        </div>
+        <!-- New Content End -->
+
+        <!-- Add New Audit Section Start -->
+        <section class="add-audit">
+            <h2>Add New Audit</h2>
+            <form id="audit-form">
+                <input type="text" id="item_name" placeholder="Item Name" required>
+                <input type="text" id="warehouse" placeholder="Warehouse" required>
+                <input type="number" id="quantity" placeholder="Quantity" required>
+                <input type="text" id="status" placeholder="Status" required>
+                <button type="submit">Add Audit</button>
+            </form>
+        </section>
+        <!-- Add New Audit Section End -->
+    </div>
+    <footer>
+        <p>&copy; 2025 Warehouse Audit Systems</p>
+    </footer>
+    <script src="script.js"></script>
+    <script src="assets/script.js"></script>
+    <script>
+        async function fetchAudits() {
+            try {
+                let response = await fetch('http://127.0.0.1:5000/api/audits');
+                let audits = await response.json();
+
+                let auditList = document.getElementById('audit-list');
+                auditList.innerHTML = '';
+
+                audits.forEach(audit => {
+                    let li = document.createElement('li');
+                    li.textContent = `${audit.item_name} - ${audit.warehouse} - ${audit.quantity} - ${audit.status} (${audit.audit_date})`;
+                    auditList.appendChild(li);
+                });
+            } catch (error) {
+                console.error('Error fetching audits:', error);
+            }
+        }
+
+        fetchAudits();
+
+        document.getElementById('audit-form').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            let auditData = {
+                item_name: document.getElementById('item_name').value,
+                warehouse: document.getElementById('warehouse').value,
+                quantity: document.getElementById('quantity').value,
+                status: document.getElementById('status').value
+            };
+
+            try {
+                let response = await fetch('http://127.0.0.1:5000/api/audits', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(auditData)
+                });
+
+                if (response.ok) {
+                    alert('Audit added successfully');
+                    fetchAudits();  // Refresh list
+                } else {
+                    let errorData = await response.json();
+                    console.error('Error adding audit:', errorData);
+                    alert(`Error adding audit: ${errorData.message}`);
+                }
+            } catch (error) {
+                console.error('Error adding audit:', error);
+                alert('Error adding audit. Please check the console for more details.');
+            }
+        });
+    </script>
+</body>
+</html>
