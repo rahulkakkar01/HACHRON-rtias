@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
     <div class="sidebar">
         <h2>Inventory</h2>
         <ul>
@@ -42,7 +43,7 @@
                 <h2>Full Physical Inventory</h2>
                 <p>Status: <span id="inventory-status">Not Started</span></p>
                 <button onclick="startAudit('Full Physical Inventory')">Start Audit</button>
-                <button onclick="completeAudit('Full Physical Inventory')">Complete Audit</button>
+                <a href="analysis.html?type=Full Physical Inventory">View Analysis</a>
             </div>
 
             <!-- Cycle Counting -->
@@ -50,7 +51,7 @@
                 <h2>Cycle Counting</h2>
                 <p>Status: <span id="cycle-status">Not Started</span></p>
                 <button onclick="startAudit('Cycle Counting')">Start Audit</button>
-                <button onclick="completeAudit('Cycle Counting')">Complete Audit</button>
+                <a href="analysis.html?type=Cycle Counting">View Analysis</a>
             </div>
 
             <!-- Spot Checks -->
@@ -58,7 +59,7 @@
                 <h2>Spot Checks</h2>
                 <p>Status: <span id="spot-status">Not Started</span></p>
                 <button onclick="startAudit('Spot Checks')">Start Audit</button>
-                <button onclick="completeAudit('Spot Checks')">Complete Audit</button>
+                <a href="analysis.html?type=Spot Checks">View Analysis</a>
             </div>
 
             <!-- Perpetual Inventory -->
@@ -66,6 +67,7 @@
                 <h2>Perpetual Inventory</h2>
                 <p>Status: <span id="perpetual-status">Active</span></p>
                 <p>This is continuously updating.</p>
+                <a href="analysis.html?type=Perpetual Inventory">View Analysis</a>
             </div>
 
             <!-- Audit Activity Log -->
@@ -86,67 +88,27 @@
                 <input type="text" id="warehouse" placeholder="Warehouse" required>
                 <input type="number" id="quantity" placeholder="Quantity" required>
                 <input type="text" id="status" placeholder="Status" required>
+                <input type="text" id="type" placeholder="Audit Type" required>
                 <button type="submit">Add Audit</button>
             </form>
         </section>
         <!-- Add New Audit Section End -->
+
+        <!-- Summary Section -->
+        <section class="audit-summary">
+            <h2>Audit Summary</h2>
+            <div id="audit-summary"></div>
+        </section>
     </div>
     <footer>
         <p>&copy; 2025 Warehouse Audit Systems</p>
     </footer>
-    <script src="script.js"></script>
+    <script src="assets/analysis.js"></script>
     <script src="assets/script.js"></script>
     <script>
-        async function fetchAudits() {
-            try {
-                let response = await fetch('http://127.0.0.1:5000/api/audits');
-                let audits = await response.json();
-
-                let auditList = document.getElementById('audit-list');
-                auditList.innerHTML = '';
-
-                audits.forEach(audit => {
-                    let li = document.createElement('li');
-                    li.textContent = `${audit.item_name} - ${audit.warehouse} - ${audit.quantity} - ${audit.status} (${audit.audit_date})`;
-                    auditList.appendChild(li);
-                });
-            } catch (error) {
-                console.error('Error fetching audits:', error);
-            }
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('show');
         }
-
-        fetchAudits();
-
-        document.getElementById('audit-form').addEventListener('submit', async function (event) {
-            event.preventDefault();
-
-            let auditData = {
-                item_name: document.getElementById('item_name').value,
-                warehouse: document.getElementById('warehouse').value,
-                quantity: document.getElementById('quantity').value,
-                status: document.getElementById('status').value
-            };
-
-            try {
-                let response = await fetch('http://127.0.0.1:5000/api/audits', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(auditData)
-                });
-
-                if (response.ok) {
-                    alert('Audit added successfully');
-                    fetchAudits();  // Refresh list
-                } else {
-                    let errorData = await response.json();
-                    console.error('Error adding audit:', errorData);
-                    alert(`Error adding audit: ${errorData.message}`);
-                }
-            } catch (error) {
-                console.error('Error adding audit:', error);
-                alert('Error adding audit. Please check the console for more details.');
-            }
-        });
     </script>
 </body>
 </html>
