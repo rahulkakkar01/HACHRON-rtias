@@ -62,7 +62,11 @@ cd fantastic4
 ```
 
 ### **2️⃣ Open the Dashboard**  
-- Open `dashboad.html` in your **web browser**.  
+- Open `dashboad.html` in your **web browser** or access it with
+  
+  ```bash
+  https://PriyanshuKSharma.github.io/fantastic4/
+  ```
 - The dashboard allows you to **view inventory**, **start audits**, and **analyze stock levels**.  
 
 ### **3️⃣ Start an Audit**  
