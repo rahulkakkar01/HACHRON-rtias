@@ -1,0 +1,501 @@
+index,product,category,price,quantity,brand,Sales Volume
+1,Colgate Household Essentials Product 1,Household Essentials,475.85,156,Colgate,12
+2,Britannia Bakery Product 2,Bakery,86.45,264,Britannia,15
+3,Amul Dairy Product 3,Dairy,304.55,201,Amul,7
+4,McCain Frozen Foods Product 4,Frozen Foods,485.26,463,McCain,42
+5,Haldiram Snacks Product 5,Snacks,496.18,210,Haldiram,16
+6,Kurkure Snacks Product 6,Snacks,13.46,394,Kurkure,31
+7,Nestle Dairy Product 7,Dairy,78.35,237,Nestle,20
+8,Harpic Household Essentials Product 8,Household Essentials,54.4,495,Harpic,48
+9,Colgate Household Essentials Product 9,Household Essentials,300.28,180,Colgate,41
+10,Nestle Dairy Product 10,Dairy,93.56,216,Nestle,22
+11,Local Farm Fruits & Vegetables Product 11,Fruits & Vegetables,483.16,291,Local Farm,13
+12,Lays Snacks Product 12,Snacks,123.14,141,Lays,11
+13,Local Farm Fruits & Vegetables Product 13,Fruits & Vegetables,418.27,84,Local Farm,18
+14,Tropicana Beverages Product 14,Beverages,99.3,437,Tropicana,6
+15,ITC Frozen Foods Product 15,Frozen Foods,111.89,309,ITC,33
+16,Harpic Household Essentials Product 16,Household Essentials,389.82,211,Harpic,14
+17,ITC Frozen Foods Product 17,Frozen Foods,366.36,320,ITC,12
+18,Sumeru Frozen Foods Product 18,Frozen Foods,265.21,239,Sumeru,44
+19,Harvest Gold Bakery Product 19,Bakery,376.19,416,Harvest Gold,28
+20,Lays Snacks Product 20,Snacks,147.66,429,Lays,49
+21,Coca-Cola Beverages Product 21,Beverages,403.08,114,Coca-Cola,29
+22,Surf Excel Household Essentials Product 22,Household Essentials,388.4,185,Surf Excel,28
+23,Dettol Household Essentials Product 23,Household Essentials,107.43,441,Dettol,39
+24,Amul Dairy Product 24,Dairy,306.92,280,Amul,45
+25,Local Farm Fruits & Vegetables Product 25,Fruits & Vegetables,426.52,317,Local Farm,38
+26,Tropicana Beverages Product 26,Beverages,191.7,111,Tropicana,28
+27,Britannia Bakery Product 27,Bakery,299.74,263,Britannia,31
+28,Amul Dairy Product 28,Dairy,197.63,480,Amul,18
+29,Amul Dairy Product 29,Dairy,363.65,304,Amul,18
+30,Dettol Household Essentials Product 30,Household Essentials,266.14,64,Dettol,30
+31,Haldiram Snacks Product 31,Snacks,62.87,112,Haldiram,36
+32,Surf Excel Household Essentials Product 32,Household Essentials,164.03,145,Surf Excel,8
+33,McCain Frozen Foods Product 33,Frozen Foods,132.15,286,McCain,19
+34,Amul Dairy Product 34,Dairy,122.11,209,Amul,11
+35,Nestle Dairy Product 35,Dairy,89.0,115,Nestle,46
+36,Harvest Gold Bakery Product 36,Bakery,320.37,183,Harvest Gold,32
+37,Fresh Pick Fruits & Vegetables Product 37,Fruits & Vegetables,101.42,335,Fresh Pick,15
+38,Bingo Snacks Product 38,Snacks,449.08,280,Bingo,37
+39,Coca-Cola Beverages Product 39,Beverages,327.37,170,Coca-Cola,17
+40,Red Bull Beverages Product 40,Beverages,13.41,460,Red Bull,13
+41,McCain Frozen Foods Product 41,Frozen Foods,349.29,283,McCain,48
+42,Dettol Household Essentials Product 42,Household Essentials,168.37,145,Dettol,28
+43,Tropicana Beverages Product 43,Beverages,188.18,491,Tropicana,16
+44,Sumeru Frozen Foods Product 44,Frozen Foods,253.65,162,Sumeru,41
+45,Tropicana Beverages Product 45,Beverages,28.07,162,Tropicana,6
+46,Haldiram Snacks Product 46,Snacks,35.22,273,Haldiram,37
+47,Red Bull Beverages Product 47,Beverages,343.55,102,Red Bull,48
+48,Haldiram Snacks Product 48,Snacks,280.92,296,Haldiram,8
+49,Dettol Household Essentials Product 49,Household Essentials,191.13,450,Dettol,42
+50,Harvest Gold Bakery Product 50,Bakery,491.88,444,Harvest Gold,20
+51,Coca-Cola Beverages Product 51,Beverages,167.18,375,Coca-Cola,20
+52,Britannia Bakery Product 52,Bakery,299.54,492,Britannia,40
+53,Mother Dairy Dairy Product 53,Dairy,260.93,196,Mother Dairy,24
+54,Colgate Household Essentials Product 54,Household Essentials,470.86,473,Colgate,43
+55,Haldiram Snacks Product 55,Snacks,77.39,490,Haldiram,29
+56,Bingo Snacks Product 56,Snacks,275.31,347,Bingo,39
+57,Colgate Household Essentials Product 57,Household Essentials,95.73,161,Colgate,6
+58,Tropicana Beverages Product 58,Beverages,483.06,86,Tropicana,36
+59,Nestle Dairy Product 59,Dairy,176.12,148,Nestle,23
+60,Mother Dairy Dairy Product 60,Dairy,392.14,457,Mother Dairy,15
+61,Tropicana Beverages Product 61,Beverages,394.82,153,Tropicana,24
+62,Sumeru Frozen Foods Product 62,Frozen Foods,192.42,148,Sumeru,29
+63,Harvest Gold Bakery Product 63,Bakery,88.8,387,Harvest Gold,6
+64,Sumeru Frozen Foods Product 64,Frozen Foods,329.46,218,Sumeru,40
+65,Tropicana Beverages Product 65,Beverages,126.25,326,Tropicana,24
+66,Dettol Household Essentials Product 66,Household Essentials,332.23,82,Dettol,16
+67,Nestle Dairy Product 67,Dairy,321.8,71,Nestle,34
+68,ITC Frozen Foods Product 68,Frozen Foods,202.62,487,ITC,12
+69,Nestle Dairy Product 69,Dairy,399.46,335,Nestle,37
+70,Local Farm Fruits & Vegetables Product 70,Fruits & Vegetables,251.33,366,Local Farm,23
+71,Local Farm Fruits & Vegetables Product 71,Fruits & Vegetables,386.59,66,Local Farm,48
+72,Fresh Pick Fruits & Vegetables Product 72,Fruits & Vegetables,477.43,422,Fresh Pick,10
+73,Amul Dairy Product 73,Dairy,477.01,398,Amul,35
+74,Amul Dairy Product 74,Dairy,46.92,302,Amul,25
+75,Surf Excel Household Essentials Product 75,Household Essentials,165.29,177,Surf Excel,22
+76,Pepsi Beverages Product 76,Beverages,468.72,107,Pepsi,7
+77,ITC Frozen Foods Product 77,Frozen Foods,311.35,391,ITC,27
+78,Bingo Snacks Product 78,Snacks,263.98,435,Bingo,30
+79,Tropicana Beverages Product 79,Beverages,351.54,348,Tropicana,43
+80,Harvest Gold Bakery Product 80,Bakery,406.59,404,Harvest Gold,29
+81,Harvest Gold Bakery Product 81,Bakery,260.56,362,Harvest Gold,40
+82,Harvest Gold Bakery Product 82,Bakery,328.48,449,Harvest Gold,18
+83,Local Farm Fruits & Vegetables Product 83,Fruits & Vegetables,175.62,141,Local Farm,38
+84,Haldiram Snacks Product 84,Snacks,293.36,391,Haldiram,29
+85,Bingo Snacks Product 85,Snacks,491.1,199,Bingo,26
+86,Tropicana Beverages Product 86,Beverages,29.03,320,Tropicana,47
+87,Local Farm Fruits & Vegetables Product 87,Fruits & Vegetables,265.9,102,Local Farm,48
+88,Local Farm Fruits & Vegetables Product 88,Fruits & Vegetables,234.06,311,Local Farm,49
+89,Fresh Pick Fruits & Vegetables Product 89,Fruits & Vegetables,274.91,360,Fresh Pick,44
+90,Fresh Pick Fruits & Vegetables Product 90,Fruits & Vegetables,488.17,173,Fresh Pick,46
+91,Sumeru Frozen Foods Product 91,Frozen Foods,399.64,368,Sumeru,23
+92,Fresh Pick Fruits & Vegetables Product 92,Fruits & Vegetables,48.44,278,Fresh Pick,30
+93,Harvest Gold Bakery Product 93,Bakery,419.63,442,Harvest Gold,16
+94,Britannia Bakery Product 94,Bakery,94.91,50,Britannia,38
+95,ITC Frozen Foods Product 95,Frozen Foods,360.15,286,ITC,5
+96,Britannia Bakery Product 96,Bakery,331.98,118,Britannia,26
+97,Britannia Bakery Product 97,Bakery,33.38,203,Britannia,20
+98,Amul Dairy Product 98,Dairy,68.88,334,Amul,18
+99,Local Farm Fruits & Vegetables Product 99,Fruits & Vegetables,56.14,143,Local Farm,9
+100,Fresh Pick Fruits & Vegetables Product 100,Fruits & Vegetables,57.94,481,Fresh Pick,25
+101,Colgate Household Essentials Product 101,Household Essentials,94.87,271,Colgate,41
+102,Harpic Household Essentials Product 102,Household Essentials,311.77,374,Harpic,40
+103,Haldiram Snacks Product 103,Snacks,193.56,299,Haldiram,23
+104,Haldiram Snacks Product 104,Snacks,429.68,374,Haldiram,49
+105,Fresh Pick Fruits & Vegetables Product 105,Fruits & Vegetables,44.58,296,Fresh Pick,6
+106,Tropicana Beverages Product 106,Beverages,297.03,389,Tropicana,28
+107,Fresh Pick Fruits & Vegetables Product 107,Fruits & Vegetables,290.95,82,Fresh Pick,37
+108,Britannia Bakery Product 108,Bakery,412.11,317,Britannia,7
+109,Coca-Cola Beverages Product 109,Beverages,329.23,92,Coca-Cola,48
+110,Britannia Bakery Product 110,Bakery,115.15,351,Britannia,6
+111,Britannia Bakery Product 111,Bakery,312.94,264,Britannia,21
+112,Haldiram Snacks Product 112,Snacks,198.84,139,Haldiram,38
+113,Amul Dairy Product 113,Dairy,253.06,363,Amul,49
+114,Amul Dairy Product 114,Dairy,29.2,266,Amul,25
+115,Britannia Bakery Product 115,Bakery,278.51,406,Britannia,13
+116,Amul Dairy Product 116,Dairy,368.51,85,Amul,22
+117,Red Bull Beverages Product 117,Beverages,294.47,200,Red Bull,36
+118,Harvest Gold Bakery Product 118,Bakery,220.21,62,Harvest Gold,27
+119,Red Bull Beverages Product 119,Beverages,60.53,322,Red Bull,24
+120,Pepsi Beverages Product 120,Beverages,155.84,68,Pepsi,40
+121,Local Farm Fruits & Vegetables Product 121,Fruits & Vegetables,453.64,125,Local Farm,13
+122,Colgate Household Essentials Product 122,Household Essentials,475.53,433,Colgate,23
+123,Bingo Snacks Product 123,Snacks,50.81,118,Bingo,39
+124,Local Farm Fruits & Vegetables Product 124,Fruits & Vegetables,281.31,102,Local Farm,27
+125,Red Bull Beverages Product 125,Beverages,54.69,91,Red Bull,43
+126,Sumeru Frozen Foods Product 126,Frozen Foods,37.38,212,Sumeru,27
+127,Britannia Bakery Product 127,Bakery,355.86,288,Britannia,16
+128,Pepsi Beverages Product 128,Beverages,420.11,450,Pepsi,42
+129,Harpic Household Essentials Product 129,Household Essentials,353.47,219,Harpic,13
+130,Bingo Snacks Product 130,Snacks,356.06,54,Bingo,33
+131,Harvest Gold Bakery Product 131,Bakery,493.45,414,Harvest Gold,5
+132,McCain Frozen Foods Product 132,Frozen Foods,474.15,266,McCain,49
+133,Fresh Pick Fruits & Vegetables Product 133,Fruits & Vegetables,194.37,464,Fresh Pick,23
+134,Harvest Gold Bakery Product 134,Bakery,283.62,140,Harvest Gold,14
+135,Bingo Snacks Product 135,Snacks,64.49,222,Bingo,17
+136,Haldiram Snacks Product 136,Snacks,290.02,197,Haldiram,32
+137,Britannia Bakery Product 137,Bakery,328.11,50,Britannia,7
+138,Harvest Gold Bakery Product 138,Bakery,481.46,240,Harvest Gold,29
+139,Pepsi Beverages Product 139,Beverages,223.8,107,Pepsi,48
+140,Harvest Gold Bakery Product 140,Bakery,282.44,352,Harvest Gold,25
+141,McCain Frozen Foods Product 141,Frozen Foods,496.55,278,McCain,40
+142,Nestle Dairy Product 142,Dairy,484.96,451,Nestle,45
+143,Pepsi Beverages Product 143,Beverages,154.3,50,Pepsi,7
+144,Surf Excel Household Essentials Product 144,Household Essentials,458.47,379,Surf Excel,36
+145,McCain Frozen Foods Product 145,Frozen Foods,145.92,397,McCain,40
+146,Haldiram Snacks Product 146,Snacks,183.14,227,Haldiram,32
+147,Local Farm Fruits & Vegetables Product 147,Fruits & Vegetables,487.45,241,Local Farm,31
+148,Sumeru Frozen Foods Product 148,Frozen Foods,272.69,466,Sumeru,24
+149,Harvest Gold Bakery Product 149,Bakery,142.77,446,Harvest Gold,39
+150,Harvest Gold Bakery Product 150,Bakery,475.4,305,Harvest Gold,9
+151,Surf Excel Household Essentials Product 151,Household Essentials,214.94,361,Surf Excel,34
+152,Bingo Snacks Product 152,Snacks,32.16,168,Bingo,37
+153,McCain Frozen Foods Product 153,Frozen Foods,245.38,288,McCain,15
+154,Harvest Gold Bakery Product 154,Bakery,196.64,391,Harvest Gold,31
+155,Coca-Cola Beverages Product 155,Beverages,41.12,154,Coca-Cola,39
+156,Surf Excel Household Essentials Product 156,Household Essentials,16.7,360,Surf Excel,10
+157,Local Farm Fruits & Vegetables Product 157,Fruits & Vegetables,271.83,182,Local Farm,42
+158,Amul Dairy Product 158,Dairy,296.72,102,Amul,41
+159,Kurkure Snacks Product 159,Snacks,195.15,134,Kurkure,18
+160,Pepsi Beverages Product 160,Beverages,133.21,222,Pepsi,17
+161,Fresh Pick Fruits & Vegetables Product 161,Fruits & Vegetables,440.33,337,Fresh Pick,38
+162,Local Farm Fruits & Vegetables Product 162,Fruits & Vegetables,65.64,203,Local Farm,38
+163,ITC Frozen Foods Product 163,Frozen Foods,417.37,355,ITC,16
+164,Pepsi Beverages Product 164,Beverages,484.31,271,Pepsi,21
+165,Dettol Household Essentials Product 165,Household Essentials,216.06,278,Dettol,25
+166,ITC Frozen Foods Product 166,Frozen Foods,404.47,152,ITC,42
+167,Fresh Pick Fruits & Vegetables Product 167,Fruits & Vegetables,181.79,147,Fresh Pick,22
+168,Sumeru Frozen Foods Product 168,Frozen Foods,224.36,496,Sumeru,38
+169,Local Farm Fruits & Vegetables Product 169,Fruits & Vegetables,261.85,384,Local Farm,34
+170,Harpic Household Essentials Product 170,Household Essentials,432.56,182,Harpic,33
+171,Fresh Pick Fruits & Vegetables Product 171,Fruits & Vegetables,464.03,379,Fresh Pick,21
+172,Fresh Pick Fruits & Vegetables Product 172,Fruits & Vegetables,234.98,83,Fresh Pick,10
+173,Harvest Gold Bakery Product 173,Bakery,171.09,284,Harvest Gold,47
+174,Nestle Dairy Product 174,Dairy,273.26,200,Nestle,20
+175,Dettol Household Essentials Product 175,Household Essentials,78.03,57,Dettol,8
+176,Fresh Pick Fruits & Vegetables Product 176,Fruits & Vegetables,211.71,401,Fresh Pick,7
+177,Amul Dairy Product 177,Dairy,486.82,110,Amul,23
+178,Britannia Bakery Product 178,Bakery,179.09,219,Britannia,26
+179,Harvest Gold Bakery Product 179,Bakery,69.11,282,Harvest Gold,16
+180,Kurkure Snacks Product 180,Snacks,188.49,127,Kurkure,30
+181,Britannia Bakery Product 181,Bakery,29.26,298,Britannia,26
+182,Colgate Household Essentials Product 182,Household Essentials,438.05,368,Colgate,21
+183,Haldiram Snacks Product 183,Snacks,405.04,162,Haldiram,39
+184,Harvest Gold Bakery Product 184,Bakery,112.58,176,Harvest Gold,26
+185,ITC Frozen Foods Product 185,Frozen Foods,382.38,127,ITC,28
+186,Lays Snacks Product 186,Snacks,40.55,236,Lays,11
+187,Nestle Dairy Product 187,Dairy,423.78,412,Nestle,49
+188,Kurkure Snacks Product 188,Snacks,183.53,420,Kurkure,19
+189,Red Bull Beverages Product 189,Beverages,194.87,251,Red Bull,43
+190,Coca-Cola Beverages Product 190,Beverages,113.61,175,Coca-Cola,48
+191,Coca-Cola Beverages Product 191,Beverages,178.03,74,Coca-Cola,8
+192,Bingo Snacks Product 192,Snacks,327.92,195,Bingo,40
+193,Harpic Household Essentials Product 193,Household Essentials,297.55,313,Harpic,44
+194,Tropicana Beverages Product 194,Beverages,72.51,474,Tropicana,41
+195,ITC Frozen Foods Product 195,Frozen Foods,307.7,492,ITC,49
+196,McCain Frozen Foods Product 196,Frozen Foods,467.51,486,McCain,26
+197,Harvest Gold Bakery Product 197,Bakery,189.02,161,Harvest Gold,8
+198,Sumeru Frozen Foods Product 198,Frozen Foods,53.06,399,Sumeru,35
+199,Surf Excel Household Essentials Product 199,Household Essentials,49.31,292,Surf Excel,35
+200,Harvest Gold Bakery Product 200,Bakery,498.66,55,Harvest Gold,6
+201,Fresh Pick Fruits & Vegetables Product 201,Fruits & Vegetables,459.52,384,Fresh Pick,10
+202,McCain Frozen Foods Product 202,Frozen Foods,250.47,484,McCain,6
+203,Dettol Household Essentials Product 203,Household Essentials,290.09,484,Dettol,49
+204,Local Farm Fruits & Vegetables Product 204,Fruits & Vegetables,101.65,167,Local Farm,8
+205,Amul Dairy Product 205,Dairy,370.76,189,Amul,5
+206,Kurkure Snacks Product 206,Snacks,151.43,342,Kurkure,15
+207,Colgate Household Essentials Product 207,Household Essentials,167.11,308,Colgate,37
+208,ITC Frozen Foods Product 208,Frozen Foods,232.59,310,ITC,27
+209,Haldiram Snacks Product 209,Snacks,108.85,217,Haldiram,6
+210,Local Farm Fruits & Vegetables Product 210,Fruits & Vegetables,78.02,378,Local Farm,21
+211,Red Bull Beverages Product 211,Beverages,241.85,87,Red Bull,39
+212,Sumeru Frozen Foods Product 212,Frozen Foods,465.47,367,Sumeru,48
+213,Kurkure Snacks Product 213,Snacks,467.14,186,Kurkure,38
+214,Local Farm Fruits & Vegetables Product 214,Fruits & Vegetables,42.58,345,Local Farm,26
+215,Fresh Pick Fruits & Vegetables Product 215,Fruits & Vegetables,392.94,316,Fresh Pick,45
+216,Harvest Gold Bakery Product 216,Bakery,401.77,340,Harvest Gold,25
+217,Britannia Bakery Product 217,Bakery,125.49,127,Britannia,30
+218,McCain Frozen Foods Product 218,Frozen Foods,439.83,138,McCain,22
+219,Colgate Household Essentials Product 219,Household Essentials,194.7,228,Colgate,42
+220,Red Bull Beverages Product 220,Beverages,224.98,202,Red Bull,21
+221,Red Bull Beverages Product 221,Beverages,198.11,358,Red Bull,44
+222,Nestle Dairy Product 222,Dairy,67.28,183,Nestle,7
+223,Dettol Household Essentials Product 223,Household Essentials,174.1,497,Dettol,19
+224,Surf Excel Household Essentials Product 224,Household Essentials,252.76,280,Surf Excel,31
+225,Local Farm Fruits & Vegetables Product 225,Fruits & Vegetables,84.32,146,Local Farm,41
+226,Nestle Dairy Product 226,Dairy,80.13,245,Nestle,26
+227,Kurkure Snacks Product 227,Snacks,252.05,379,Kurkure,37
+228,ITC Frozen Foods Product 228,Frozen Foods,272.88,352,ITC,40
+229,Harvest Gold Bakery Product 229,Bakery,305.94,64,Harvest Gold,33
+230,Britannia Bakery Product 230,Bakery,122.33,381,Britannia,49
+231,Bingo Snacks Product 231,Snacks,324.16,292,Bingo,40
+232,Fresh Pick Fruits & Vegetables Product 232,Fruits & Vegetables,133.38,118,Fresh Pick,24
+233,Mother Dairy Dairy Product 233,Dairy,455.14,87,Mother Dairy,10
+234,Dettol Household Essentials Product 234,Household Essentials,151.09,412,Dettol,16
+235,Lays Snacks Product 235,Snacks,78.17,259,Lays,29
+236,Red Bull Beverages Product 236,Beverages,365.79,220,Red Bull,16
+237,Fresh Pick Fruits & Vegetables Product 237,Fruits & Vegetables,460.19,182,Fresh Pick,41
+238,Harpic Household Essentials Product 238,Household Essentials,387.91,336,Harpic,13
+239,Sumeru Frozen Foods Product 239,Frozen Foods,370.86,345,Sumeru,45
+240,Sumeru Frozen Foods Product 240,Frozen Foods,230.91,351,Sumeru,41
+241,Harvest Gold Bakery Product 241,Bakery,421.06,231,Harvest Gold,27
+242,Coca-Cola Beverages Product 242,Beverages,436.25,104,Coca-Cola,44
+243,Surf Excel Household Essentials Product 243,Household Essentials,195.86,358,Surf Excel,13
+244,Haldiram Snacks Product 244,Snacks,396.02,203,Haldiram,45
+245,Nestle Dairy Product 245,Dairy,213.11,139,Nestle,15
+246,ITC Frozen Foods Product 246,Frozen Foods,238.19,467,ITC,31
+247,Tropicana Beverages Product 247,Beverages,120.06,413,Tropicana,28
+248,Red Bull Beverages Product 248,Beverages,91.1,393,Red Bull,37
+249,Coca-Cola Beverages Product 249,Beverages,294.49,199,Coca-Cola,30
+250,Fresh Pick Fruits & Vegetables Product 250,Fruits & Vegetables,335.13,386,Fresh Pick,24
+251,Coca-Cola Beverages Product 251,Beverages,283.08,391,Coca-Cola,32
+252,Surf Excel Household Essentials Product 252,Household Essentials,100.39,376,Surf Excel,5
+253,Harvest Gold Bakery Product 253,Bakery,377.48,428,Harvest Gold,23
+254,ITC Frozen Foods Product 254,Frozen Foods,103.44,478,ITC,33
+255,Sumeru Frozen Foods Product 255,Frozen Foods,42.2,127,Sumeru,6
+256,McCain Frozen Foods Product 256,Frozen Foods,206.37,215,McCain,8
+257,Tropicana Beverages Product 257,Beverages,432.27,408,Tropicana,7
+258,Kurkure Snacks Product 258,Snacks,449.74,211,Kurkure,37
+259,Dettol Household Essentials Product 259,Household Essentials,86.51,227,Dettol,11
+260,Harvest Gold Bakery Product 260,Bakery,23.28,296,Harvest Gold,7
+261,Dettol Household Essentials Product 261,Household Essentials,257.7,377,Dettol,41
+262,Nestle Dairy Product 262,Dairy,329.85,313,Nestle,38
+263,Mother Dairy Dairy Product 263,Dairy,305.57,351,Mother Dairy,47
+264,Fresh Pick Fruits & Vegetables Product 264,Fruits & Vegetables,337.36,447,Fresh Pick,35
+265,Colgate Household Essentials Product 265,Household Essentials,52.59,379,Colgate,11
+266,Red Bull Beverages Product 266,Beverages,425.58,161,Red Bull,23
+267,Local Farm Fruits & Vegetables Product 267,Fruits & Vegetables,216.5,51,Local Farm,5
+268,Surf Excel Household Essentials Product 268,Household Essentials,177.49,283,Surf Excel,6
+269,Nestle Dairy Product 269,Dairy,26.77,69,Nestle,9
+270,Harvest Gold Bakery Product 270,Bakery,389.18,442,Harvest Gold,38
+271,Harvest Gold Bakery Product 271,Bakery,117.56,391,Harvest Gold,48
+272,Pepsi Beverages Product 272,Beverages,287.23,108,Pepsi,27
+273,Pepsi Beverages Product 273,Beverages,21.01,63,Pepsi,13
+274,Lays Snacks Product 274,Snacks,207.25,250,Lays,26
+275,Mother Dairy Dairy Product 275,Dairy,492.36,491,Mother Dairy,33
+276,Harvest Gold Bakery Product 276,Bakery,143.43,124,Harvest Gold,10
+277,Haldiram Snacks Product 277,Snacks,67.7,405,Haldiram,45
+278,ITC Frozen Foods Product 278,Frozen Foods,281.55,202,ITC,42
+279,Haldiram Snacks Product 279,Snacks,111.15,411,Haldiram,26
+280,Britannia Bakery Product 280,Bakery,451.01,183,Britannia,31
+281,Haldiram Snacks Product 281,Snacks,320.22,358,Haldiram,11
+282,Lays Snacks Product 282,Snacks,420.67,239,Lays,6
+283,Fresh Pick Fruits & Vegetables Product 283,Fruits & Vegetables,371.64,356,Fresh Pick,40
+284,Mother Dairy Dairy Product 284,Dairy,43.44,316,Mother Dairy,44
+285,Amul Dairy Product 285,Dairy,363.55,281,Amul,39
+286,ITC Frozen Foods Product 286,Frozen Foods,204.36,201,ITC,26
+287,Harvest Gold Bakery Product 287,Bakery,115.32,85,Harvest Gold,24
+288,Nestle Dairy Product 288,Dairy,422.35,386,Nestle,49
+289,Mother Dairy Dairy Product 289,Dairy,315.43,499,Mother Dairy,13
+290,Tropicana Beverages Product 290,Beverages,366.81,266,Tropicana,47
+291,Lays Snacks Product 291,Snacks,130.74,180,Lays,41
+292,Fresh Pick Fruits & Vegetables Product 292,Fruits & Vegetables,484.17,151,Fresh Pick,38
+293,Local Farm Fruits & Vegetables Product 293,Fruits & Vegetables,164.15,492,Local Farm,21
+294,Lays Snacks Product 294,Snacks,228.54,352,Lays,16
+295,Sumeru Frozen Foods Product 295,Frozen Foods,368.79,198,Sumeru,21
+296,Surf Excel Household Essentials Product 296,Household Essentials,349.22,247,Surf Excel,12
+297,Pepsi Beverages Product 297,Beverages,249.82,192,Pepsi,30
+298,Coca-Cola Beverages Product 298,Beverages,338.26,337,Coca-Cola,14
+299,Surf Excel Household Essentials Product 299,Household Essentials,98.48,135,Surf Excel,11
+300,Sumeru Frozen Foods Product 300,Frozen Foods,351.74,186,Sumeru,12
+301,Bingo Snacks Product 301,Snacks,472.69,131,Bingo,35
+302,Sumeru Frozen Foods Product 302,Frozen Foods,233.02,492,Sumeru,46
+303,Surf Excel Household Essentials Product 303,Household Essentials,328.58,201,Surf Excel,39
+304,Fresh Pick Fruits & Vegetables Product 304,Fruits & Vegetables,245.72,180,Fresh Pick,41
+305,Mother Dairy Dairy Product 305,Dairy,365.14,413,Mother Dairy,43
+306,Colgate Household Essentials Product 306,Household Essentials,274.35,398,Colgate,26
+307,Coca-Cola Beverages Product 307,Beverages,316.69,65,Coca-Cola,49
+308,Haldiram Snacks Product 308,Snacks,124.15,360,Haldiram,39
+309,Kurkure Snacks Product 309,Snacks,20.42,296,Kurkure,17
+310,Harvest Gold Bakery Product 310,Bakery,470.14,276,Harvest Gold,43
+311,McCain Frozen Foods Product 311,Frozen Foods,385.92,367,McCain,48
+312,Tropicana Beverages Product 312,Beverages,438.1,288,Tropicana,14
+313,McCain Frozen Foods Product 313,Frozen Foods,174.82,389,McCain,9
+314,Pepsi Beverages Product 314,Beverages,11.64,478,Pepsi,18
+315,ITC Frozen Foods Product 315,Frozen Foods,155.19,495,ITC,41
+316,Tropicana Beverages Product 316,Beverages,18.76,122,Tropicana,19
+317,Coca-Cola Beverages Product 317,Beverages,343.03,189,Coca-Cola,41
+318,Britannia Bakery Product 318,Bakery,53.81,247,Britannia,43
+319,Harpic Household Essentials Product 319,Household Essentials,304.39,111,Harpic,17
+320,Lays Snacks Product 320,Snacks,374.24,309,Lays,12
+321,Local Farm Fruits & Vegetables Product 321,Fruits & Vegetables,328.33,422,Local Farm,49
+322,ITC Frozen Foods Product 322,Frozen Foods,33.0,362,ITC,30
+323,Coca-Cola Beverages Product 323,Beverages,479.06,425,Coca-Cola,10
+324,Britannia Bakery Product 324,Bakery,318.59,264,Britannia,13
+325,Mother Dairy Dairy Product 325,Dairy,267.27,428,Mother Dairy,46
+326,Mother Dairy Dairy Product 326,Dairy,250.68,194,Mother Dairy,28
+327,Nestle Dairy Product 327,Dairy,119.98,169,Nestle,29
+328,Tropicana Beverages Product 328,Beverages,294.24,147,Tropicana,15
+329,Tropicana Beverages Product 329,Beverages,140.14,78,Tropicana,13
+330,Amul Dairy Product 330,Dairy,427.57,219,Amul,13
+331,Colgate Household Essentials Product 331,Household Essentials,466.48,444,Colgate,38
+332,Local Farm Fruits & Vegetables Product 332,Fruits & Vegetables,12.49,300,Local Farm,9
+333,Kurkure Snacks Product 333,Snacks,49.71,365,Kurkure,17
+334,Local Farm Fruits & Vegetables Product 334,Fruits & Vegetables,495.82,163,Local Farm,44
+335,Harvest Gold Bakery Product 335,Bakery,262.88,164,Harvest Gold,7
+336,Haldiram Snacks Product 336,Snacks,287.21,286,Haldiram,37
+337,Sumeru Frozen Foods Product 337,Frozen Foods,435.4,141,Sumeru,37
+338,Nestle Dairy Product 338,Dairy,88.6,318,Nestle,47
+339,Britannia Bakery Product 339,Bakery,465.74,405,Britannia,31
+340,Sumeru Frozen Foods Product 340,Frozen Foods,442.0,94,Sumeru,35
+341,Harpic Household Essentials Product 341,Household Essentials,73.15,412,Harpic,34
+342,Dettol Household Essentials Product 342,Household Essentials,10.55,307,Dettol,18
+343,Britannia Bakery Product 343,Bakery,136.76,499,Britannia,36
+344,Harvest Gold Bakery Product 344,Bakery,169.95,282,Harvest Gold,21
+345,Harpic Household Essentials Product 345,Household Essentials,320.66,393,Harpic,49
+346,Mother Dairy Dairy Product 346,Dairy,148.84,123,Mother Dairy,45
+347,Bingo Snacks Product 347,Snacks,202.15,384,Bingo,34
+348,Britannia Bakery Product 348,Bakery,396.52,453,Britannia,36
+349,Fresh Pick Fruits & Vegetables Product 349,Fruits & Vegetables,474.18,241,Fresh Pick,21
+350,Fresh Pick Fruits & Vegetables Product 350,Fruits & Vegetables,357.2,423,Fresh Pick,5
+351,ITC Frozen Foods Product 351,Frozen Foods,46.6,259,ITC,18
+352,Surf Excel Household Essentials Product 352,Household Essentials,228.52,300,Surf Excel,39
+353,Local Farm Fruits & Vegetables Product 353,Fruits & Vegetables,197.97,78,Local Farm,15
+354,Pepsi Beverages Product 354,Beverages,192.2,465,Pepsi,15
+355,Bingo Snacks Product 355,Snacks,228.49,479,Bingo,38
+356,Harvest Gold Bakery Product 356,Bakery,218.83,446,Harvest Gold,45
+357,Dettol Household Essentials Product 357,Household Essentials,399.46,206,Dettol,15
+358,Fresh Pick Fruits & Vegetables Product 358,Fruits & Vegetables,50.37,133,Fresh Pick,26
+359,Nestle Dairy Product 359,Dairy,435.35,431,Nestle,48
+360,Local Farm Fruits & Vegetables Product 360,Fruits & Vegetables,472.37,406,Local Farm,24
+361,Sumeru Frozen Foods Product 361,Frozen Foods,144.37,436,Sumeru,5
+362,Haldiram Snacks Product 362,Snacks,364.97,211,Haldiram,39
+363,Coca-Cola Beverages Product 363,Beverages,360.31,323,Coca-Cola,19
+364,Fresh Pick Fruits & Vegetables Product 364,Fruits & Vegetables,276.18,109,Fresh Pick,29
+365,Coca-Cola Beverages Product 365,Beverages,390.53,128,Coca-Cola,31
+366,ITC Frozen Foods Product 366,Frozen Foods,382.9,436,ITC,33
+367,Local Farm Fruits & Vegetables Product 367,Fruits & Vegetables,456.8,427,Local Farm,7
+368,Fresh Pick Fruits & Vegetables Product 368,Fruits & Vegetables,236.43,271,Fresh Pick,18
+369,Surf Excel Household Essentials Product 369,Household Essentials,307.58,389,Surf Excel,40
+370,Pepsi Beverages Product 370,Beverages,120.51,493,Pepsi,26
+371,McCain Frozen Foods Product 371,Frozen Foods,141.81,393,McCain,12
+372,Amul Dairy Product 372,Dairy,83.29,326,Amul,22
+373,ITC Frozen Foods Product 373,Frozen Foods,245.17,144,ITC,42
+374,Amul Dairy Product 374,Dairy,380.96,151,Amul,45
+375,Mother Dairy Dairy Product 375,Dairy,377.09,90,Mother Dairy,21
+376,Local Farm Fruits & Vegetables Product 376,Fruits & Vegetables,289.74,129,Local Farm,26
+377,Fresh Pick Fruits & Vegetables Product 377,Fruits & Vegetables,179.55,473,Fresh Pick,36
+378,Haldiram Snacks Product 378,Snacks,45.48,274,Haldiram,37
+379,Coca-Cola Beverages Product 379,Beverages,50.43,126,Coca-Cola,30
+380,Sumeru Frozen Foods Product 380,Frozen Foods,75.03,408,Sumeru,30
+381,ITC Frozen Foods Product 381,Frozen Foods,402.29,155,ITC,48
+382,Tropicana Beverages Product 382,Beverages,321.85,172,Tropicana,10
+383,Pepsi Beverages Product 383,Beverages,312.14,272,Pepsi,36
+384,Pepsi Beverages Product 384,Beverages,468.25,377,Pepsi,32
+385,ITC Frozen Foods Product 385,Frozen Foods,310.01,432,ITC,11
+386,Mother Dairy Dairy Product 386,Dairy,410.48,459,Mother Dairy,7
+387,Surf Excel Household Essentials Product 387,Household Essentials,90.36,63,Surf Excel,15
+388,Kurkure Snacks Product 388,Snacks,300.71,61,Kurkure,17
+389,Coca-Cola Beverages Product 389,Beverages,311.71,196,Coca-Cola,40
+390,Harvest Gold Bakery Product 390,Bakery,437.2,358,Harvest Gold,36
+391,Mother Dairy Dairy Product 391,Dairy,20.22,260,Mother Dairy,26
+392,Harvest Gold Bakery Product 392,Bakery,275.81,108,Harvest Gold,7
+393,Fresh Pick Fruits & Vegetables Product 393,Fruits & Vegetables,207.6,494,Fresh Pick,33
+394,Sumeru Frozen Foods Product 394,Frozen Foods,109.75,440,Sumeru,16
+395,Pepsi Beverages Product 395,Beverages,480.78,491,Pepsi,28
+396,Local Farm Fruits & Vegetables Product 396,Fruits & Vegetables,179.51,413,Local Farm,24
+397,Fresh Pick Fruits & Vegetables Product 397,Fruits & Vegetables,276.22,484,Fresh Pick,36
+398,Tropicana Beverages Product 398,Beverages,24.4,403,Tropicana,40
+399,Bingo Snacks Product 399,Snacks,451.34,311,Bingo,43
+400,Bingo Snacks Product 400,Snacks,300.25,295,Bingo,16
+401,Amul Dairy Product 401,Dairy,238.25,70,Amul,19
+402,Red Bull Beverages Product 402,Beverages,390.24,149,Red Bull,34
+403,Harpic Household Essentials Product 403,Household Essentials,126.4,383,Harpic,6
+404,Surf Excel Household Essentials Product 404,Household Essentials,428.65,90,Surf Excel,18
+405,Surf Excel Household Essentials Product 405,Household Essentials,334.68,280,Surf Excel,10
+406,Red Bull Beverages Product 406,Beverages,162.95,77,Red Bull,6
+407,Amul Dairy Product 407,Dairy,14.42,498,Amul,44
+408,Fresh Pick Fruits & Vegetables Product 408,Fruits & Vegetables,204.36,456,Fresh Pick,35
+409,Mother Dairy Dairy Product 409,Dairy,46.01,319,Mother Dairy,20
+410,Lays Snacks Product 410,Snacks,175.13,399,Lays,45
+411,Coca-Cola Beverages Product 411,Beverages,131.87,220,Coca-Cola,16
+412,Coca-Cola Beverages Product 412,Beverages,91.85,333,Coca-Cola,47
+413,Britannia Bakery Product 413,Bakery,335.26,214,Britannia,48
+414,Local Farm Fruits & Vegetables Product 414,Fruits & Vegetables,435.45,157,Local Farm,24
+415,Kurkure Snacks Product 415,Snacks,37.97,342,Kurkure,24
+416,Lays Snacks Product 416,Snacks,323.6,84,Lays,10
+417,Britannia Bakery Product 417,Bakery,53.39,210,Britannia,18
+418,Fresh Pick Fruits & Vegetables Product 418,Fruits & Vegetables,204.72,291,Fresh Pick,28
+419,Nestle Dairy Product 419,Dairy,18.52,266,Nestle,33
+420,Red Bull Beverages Product 420,Beverages,232.82,476,Red Bull,27
+421,Fresh Pick Fruits & Vegetables Product 421,Fruits & Vegetables,78.43,433,Fresh Pick,49
+422,Fresh Pick Fruits & Vegetables Product 422,Fruits & Vegetables,470.51,429,Fresh Pick,12
+423,Lays Snacks Product 423,Snacks,56.01,313,Lays,33
+424,McCain Frozen Foods Product 424,Frozen Foods,482.04,224,McCain,38
+425,Red Bull Beverages Product 425,Beverages,489.53,476,Red Bull,14
+426,ITC Frozen Foods Product 426,Frozen Foods,129.63,75,ITC,12
+427,Colgate Household Essentials Product 427,Household Essentials,386.57,377,Colgate,29
+428,McCain Frozen Foods Product 428,Frozen Foods,304.3,336,McCain,20
+429,McCain Frozen Foods Product 429,Frozen Foods,336.82,410,McCain,30
+430,ITC Frozen Foods Product 430,Frozen Foods,499.71,112,ITC,13
+431,Coca-Cola Beverages Product 431,Beverages,496.74,318,Coca-Cola,13
+432,Britannia Bakery Product 432,Bakery,151.46,373,Britannia,38
+433,Harvest Gold Bakery Product 433,Bakery,170.25,151,Harvest Gold,23
+434,ITC Frozen Foods Product 434,Frozen Foods,383.52,328,ITC,23
+435,Britannia Bakery Product 435,Bakery,194.08,359,Britannia,11
+436,Coca-Cola Beverages Product 436,Beverages,169.05,125,Coca-Cola,11
+437,Surf Excel Household Essentials Product 437,Household Essentials,196.41,142,Surf Excel,29
+438,Coca-Cola Beverages Product 438,Beverages,277.39,340,Coca-Cola,48
+439,ITC Frozen Foods Product 439,Frozen Foods,297.66,159,ITC,18
+440,Kurkure Snacks Product 440,Snacks,237.11,52,Kurkure,25
+441,Haldiram Snacks Product 441,Snacks,264.35,461,Haldiram,33
+442,Lays Snacks Product 442,Snacks,196.3,353,Lays,41
+443,Colgate Household Essentials Product 443,Household Essentials,243.58,92,Colgate,27
+444,ITC Frozen Foods Product 444,Frozen Foods,361.88,428,ITC,47
+445,Britannia Bakery Product 445,Bakery,105.93,385,Britannia,19
+446,Tropicana Beverages Product 446,Beverages,464.25,320,Tropicana,8
+447,Britannia Bakery Product 447,Bakery,182.3,339,Britannia,18
+448,Harvest Gold Bakery Product 448,Bakery,135.82,101,Harvest Gold,31
+449,Britannia Bakery Product 449,Bakery,270.81,185,Britannia,20
+450,Haldiram Snacks Product 450,Snacks,361.64,51,Haldiram,17
+451,Fresh Pick Fruits & Vegetables Product 451,Fruits & Vegetables,69.72,312,Fresh Pick,35
+452,Fresh Pick Fruits & Vegetables Product 452,Fruits & Vegetables,401.89,208,Fresh Pick,11
+453,Colgate Household Essentials Product 453,Household Essentials,398.77,494,Colgate,46
+454,Fresh Pick Fruits & Vegetables Product 454,Fruits & Vegetables,246.94,312,Fresh Pick,5
+455,Fresh Pick Fruits & Vegetables Product 455,Fruits & Vegetables,267.98,96,Fresh Pick,17
+456,Harpic Household Essentials Product 456,Household Essentials,411.4,263,Harpic,32
+457,Pepsi Beverages Product 457,Beverages,113.9,59,Pepsi,28
+458,Lays Snacks Product 458,Snacks,421.53,121,Lays,28
+459,Pepsi Beverages Product 459,Beverages,135.27,117,Pepsi,28
+460,Nestle Dairy Product 460,Dairy,337.1,195,Nestle,23
+461,Fresh Pick Fruits & Vegetables Product 461,Fruits & Vegetables,231.37,291,Fresh Pick,9
+462,Surf Excel Household Essentials Product 462,Household Essentials,371.07,275,Surf Excel,37
+463,Surf Excel Household Essentials Product 463,Household Essentials,56.9,481,Surf Excel,41
+464,Dettol Household Essentials Product 464,Household Essentials,307.48,209,Dettol,15
+465,Lays Snacks Product 465,Snacks,201.54,490,Lays,29
+466,Haldiram Snacks Product 466,Snacks,76.86,134,Haldiram,22
+467,Mother Dairy Dairy Product 467,Dairy,219.82,216,Mother Dairy,45
+468,Red Bull Beverages Product 468,Beverages,495.72,237,Red Bull,23
+469,Fresh Pick Fruits & Vegetables Product 469,Fruits & Vegetables,175.24,337,Fresh Pick,43
+470,Harvest Gold Bakery Product 470,Bakery,139.8,278,Harvest Gold,37
+471,Local Farm Fruits & Vegetables Product 471,Fruits & Vegetables,206.58,402,Local Farm,10
+472,Red Bull Beverages Product 472,Beverages,44.02,98,Red Bull,6
+473,Local Farm Fruits & Vegetables Product 473,Fruits & Vegetables,44.27,209,Local Farm,25
+474,ITC Frozen Foods Product 474,Frozen Foods,343.26,349,ITC,7
+475,ITC Frozen Foods Product 475,Frozen Foods,35.65,221,ITC,6
+476,McCain Frozen Foods Product 476,Frozen Foods,497.79,335,McCain,12
+477,ITC Frozen Foods Product 477,Frozen Foods,479.24,382,ITC,33
+478,Dettol Household Essentials Product 478,Household Essentials,108.46,257,Dettol,46
+479,ITC Frozen Foods Product 479,Frozen Foods,230.68,449,ITC,16
+480,Tropicana Beverages Product 480,Beverages,335.81,52,Tropicana,20
+481,McCain Frozen Foods Product 481,Frozen Foods,68.72,164,McCain,44
+482,McCain Frozen Foods Product 482,Frozen Foods,371.22,297,McCain,48
+483,Coca-Cola Beverages Product 483,Beverages,339.06,133,Coca-Cola,10
+484,ITC Frozen Foods Product 484,Frozen Foods,396.07,337,ITC,37
+485,Harvest Gold Bakery Product 485,Bakery,258.35,275,Harvest Gold,18
+486,Local Farm Fruits & Vegetables Product 486,Fruits & Vegetables,121.41,286,Local Farm,6
+487,Coca-Cola Beverages Product 487,Beverages,179.7,298,Coca-Cola,13
+488,Red Bull Beverages Product 488,Beverages,414.39,239,Red Bull,27
+489,Haldiram Snacks Product 489,Snacks,437.93,311,Haldiram,39
+490,Sumeru Frozen Foods Product 490,Frozen Foods,291.55,365,Sumeru,41
+491,Fresh Pick Fruits & Vegetables Product 491,Fruits & Vegetables,255.56,98,Fresh Pick,46
+492,ITC Frozen Foods Product 492,Frozen Foods,317.7,207,ITC,28
+493,Kurkure Snacks Product 493,Snacks,363.5,116,Kurkure,20
+494,Colgate Household Essentials Product 494,Household Essentials,411.18,448,Colgate,25
+495,Mother Dairy Dairy Product 495,Dairy,85.36,468,Mother Dairy,22
+496,ITC Frozen Foods Product 496,Frozen Foods,324.08,74,ITC,6
+497,Coca-Cola Beverages Product 497,Beverages,432.39,213,Coca-Cola,35
+498,McCain Frozen Foods Product 498,Frozen Foods,307.06,359,McCain,7
+499,Amul Dairy Product 499,Dairy,414.35,190,Amul,38
+500,Harvest Gold Bakery Product 500,Bakery,257.99,128,Harvest Gold,8
