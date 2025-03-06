@@ -3,236 +3,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory Management - Quantum Leap</title>
+    <title>Start Audit - Quantum Leap</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <!-- Add this to your existing style section in the head: -->
     <style>
-        /* Additional styles for the form and dropdown */
-        select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-            background-color: #f8f9fa;
-            font-size: 14px;
-        }
-        
-        /* Style for the folder colors */
-        .folder.green {
-            background-color: #4CAF50;
-        }
-        
-        .folder.purple {
-            background-color: #9C27B0;
-        }
-
-        .warehouse-selector {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-            text-align: center;
-            width: 100%;
-        }
-        
-        .warehouse-selector h3 {
-            color: #1e1e2d;
-            margin-top: 0;
-            margin-bottom: 15px;
-        }
-        
-        #dashboard-warehouse-select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            background-color: #f8f9fa;
-            font-size: 16px;
-            color: #333;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        #dashboard-warehouse-select:hover {
-            border-color: #4d79ff;
-        }
-        
-        #dashboard-warehouse-select:focus {
-            border-color: #4d79ff;
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(77, 121, 255, 0.2);
-        }
-
-        /* Additional styles for Recent Audits page */
-        .recent-activity {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .audit-entries {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .audit-list li, #audit-list li {
-            padding: 10px;
-            border-bottom: 1px solid #f0f0f0;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .audit-list li:last-child, #audit-list li:last-child {
-            border-bottom: none;
-        }
-        
-        .audit-time {
-            color: #666;
-            font-size: 0.9em;
-        }
-        
-        /* Optional: Add a way to filter audits */
-        .audit-filters {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-        
-        .audit-filters select,
-        .audit-filters input {
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        
-        .audit-filters button {
-            background-color: #4d79ff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            padding: 8px 15px;
-            cursor: pointer;
-        }
-
-        /* Stock Levels Graph Styles */
-        .graphs-container {
-            margin-top: 20px;
-        }
-        
-        .graph-row {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .graph-card {
-            flex: 1;
+        .table-container {
             background: white;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 15px;
-            min-width: 350px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid #f0f0f0;
+            overflow-x: auto;
         }
         
-        .graph-card h3 {
-            margin-top: 0;
-            color: #1e1e2d;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
+        table {
+            width: 100%;
+            border-collapse: collapse;
         }
         
-        .graph-wrapper {
-            height: 300px;
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.9rem;
+        }
+        
+        th {
+            background-color: #f9fafb;
+            color: #111827;
+            font-weight: 500;
+            position: sticky;
+            top: 0;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        tbody tr:hover {
+            background-color: #f9fafb;
+        }
+        
+        .audit-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .audit-header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #111827;
             display: flex;
             align-items: center;
-            justify-content: center;
-            background: #f9f9f9;
-            border-radius: 4px;
-            overflow: hidden;
-            margin: 15px 0;
+            gap: 8px;
         }
         
-        .graph-image {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-        
-        .graph-description {
-            font-size: 14px;
-            color: #666;
-            text-align: center;
-            margin: 5px 0 0 0;
-        }
-        
-        .insights-panel {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .insights-panel h3 {
-            margin-top: 0;
-            color: #1e1e2d;
-        }
-        
-        .insights-panel ul {
-            padding-left: 20px;
-        }
-        
-        .insights-panel li {
-            margin-bottom: 8px;
-        }
-        
-        .section-header {
-            margin-bottom: 20px;
-        }
-        
-        .section-header h2 {
-            margin-bottom: 5px;
-        }
-        
-        .section-header p {
-            color: #666;
-            margin: 0;
-        }
-        
-        .action-buttons {
+        .audit-actions {
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 10px;
         }
         
-        .action-buttons button {
-            padding: 10px 20px;
-            border: none;
+        .audit-actions button {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .data-message {
+            text-align: center;
+            padding: 25px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .data-message h3 {
+            color: #111827;
+            margin-top: 0;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .data-message ol {
+            text-align: left;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        code {
+            background: #e2e8f0;
+            padding: 2px 6px;
             border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
+            font-family: monospace;
         }
         
-        .action-buttons button:first-child {
-            background: #4d79ff;
-            color: white;
+        /* Status chips for demand categories */
+        .demand-chip {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: 500;
         }
         
-        .action-buttons button.secondary {
-            background: #6c757d;
-            color: white;
+        .high-demand {
+            background: #ecfdf5;
+            color: #064e3b;
+        }
+        
+        .medium-demand {
+            background: #eff6ff;
+            color: #1e40af;
+        }
+        
+        .low-demand {
+            background: #fffbeb;
+            color: #92400e;
+        }
+        
+        /* Filter bar styling */
+        .filter-bar {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #f0f0f0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: flex-end;
+        }
+        
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .filter-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #1e293b;
+            font-size: 14px;
+        }
+        
+        .filter-group input,
+        .filter-group select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            background-color: #f8fafc;
+            font-size: 14px;
+        }
+        
+        .filter-group input:focus,
+        .filter-group select:focus {
+            border-color: #4f46e5;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+        }
+        
+        .search-icon {
+            position: relative;
+        }
+        
+        .search-icon i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+            pointer-events: none;
+        }
+        
+        .search-icon input {
+            padding-left: 35px;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+        
+        /* No results message */
+        .no-results {
+            padding: 30px;
+            text-align: center;
+            color: #64748b;
+            font-style: italic;
+        }
+        
+        /* Stats bar */
+        .stats-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stats-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            padding: 15px;
+            flex: 1;
+            min-width: 150px;
+            border: 1px solid #f0f0f0;
+            text-align: center;
+        }
+        
+        .stats-card h3 {
+            margin: 0 0 8px 0;
+            font-size: 0.9rem;
+            color: #6b7280;
+            font-weight: 400;
+        }
+        
+        .stats-card .stat-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #111827;
+        }
+        
+        .count-high {
+            color: #166534;
+        }
+        
+        .count-medium {
+            color: #0369a1;
+        }
+        
+        .count-low {
+            color: #92400e;
         }
     </style>
 </head>
@@ -240,670 +249,356 @@
     <div class="sidebar">
         <h2><i class="fas fa-warehouse"></i> Inventory</h2>
         <ul>
-            <li onclick="showSection('dashboard-section')"><i class="fas fa-tachometer-alt"></i> Dashboard</li>
-            <li onclick="showSection('stock-section')"><i class="fas fa-cubes"></i> Stock Levels</li>
-            <li onclick="showSection('audits-section')"><i class="fas fa-history"></i> Recent Audits</li>
-            <li onclick="showSection('add-audit-section')"><i class="fas fa-plus-circle"></i> Add Audit</li>
-            <li><i class="fas fa-chart-line"></i> Reports </li>
-            <li><i class="fas fa-cog"></i> Settings </li>
+            <li onclick="window.location.href='index.html'"><i class="fas fa-tachometer-alt"></i> Dashboard</li>
+            <!-- <li onclick="window.location.href='index.html#stock-section'"><i class="fas fa-cubes"></i> Stock Levels</li>
+            <li onclick="window.location.href='index.html#audits-section'"><i class="fas fa-history"></i> Recent Audits</li>
+            <li onclick="window.location.href='index.html#add-audit-section'"><i class="fas fa-plus-circle"></i> Add Audit</li> -->
         </ul>
     </div>
     <div class="main-content">
         <header>
-            <h1><i class="fas fa-sync-alt"></i> Real-Time Inventory Audit</h1>
+            <h1><i class="fas fa-clipboard-check"></i> Full Physical Inventory Audit</h1>
         </header>
-
-        <section id="dashboard-section" class="section">
-    <div class="warehouse-selector">
-        <h3><i class="fas fa-building"></i> Select Warehouse</h3>
-        <select id="dashboard-warehouse-select" onchange="selectWarehouse(this.value)">
-            <option value="" disabled selected>Choose a Warehouse</option>
-            <option value="Warehouse A">Warehouse A</option>
-            <option value="Warehouse B">Warehouse B</option>
-            <option value="Warehouse C">Warehouse C</option>
-            <option value="Warehouse D">Warehouse D</option>
-        </select>
-    </div>
-    
-    <div class="container">
-        <div class="audit-box" id="full-inventory">
-            <div class="audit-icon"><i class="fas fa-clipboard-check fa-2x"></i></div>
-            <h2>Full Physical Inventory</h2>
-            <p>Status: <span id="inventory-status">Not Started</span></p>
-            <button onclick="window.location.href='start-audit.html'">View</button>
-        </div>
-        
-        <div class="audit-box" id="cycle-counting">
-            <div class="audit-icon"><i class="fas fa-chart-pie fa-2x"></i></div>
-            <h2>Inventory Analysis</h2>
-            <p>Status: <span id="cycle-status">Not Started</span></p>
-            <button onclick="window.location.href='inventory-analysis.html'">Start Audit</button>
-        </div>
-        
-        <div class="audit-box" id="spot-checks">
-            <div class="audit-icon"><i class="fas fa-search fa-2x"></i></div>
-            <h2>Spot Checks</h2>
-            <p>Status: <span id="spot-status">Not Started</span></p>
-            <div class="button-group">
-                <button onclick="startAudit('Spot Checks')">Start Audit</button>
-                <button onclick="completeAudit('Spot Checks')" class="secondary">Complete</button>
-            </div>
-        </div>
-        
-        <div class="audit-box" id="perpetual-inventory">
-            <div class="audit-icon"><i class="fas fa-sync fa-2x"></i></div>
-            <h2>Perpetual Inventory</h2>
-            <p>Status: <span id="perpetual-status">Active</span></p>
-            <p class="description">This is continuously updating.</p>
-        </div>
-    </div>
-</section>
-
-        <section id="stock-section" class="section" style="display: none;">
-            <div class="section-header">
-                <h2><i class="fas fa-chart-line"></i> Stock Analysis & Visualizations</h2>
-                <p>Data-driven insights for inventory management</p>
-            </div>
-            
-            <div class="graphs-container">
-                <div class="graph-row">
-                    <div class="graph-card">
-                        <h3>Demand Distribution</h3>
-                        <div class="graph-wrapper">
-                            <img src="images/demand_distribution.png" alt="Demand Distribution Histogram" class="graph-image">
-                        </div>
-                        <p class="graph-description">Distribution of product demand levels across inventory</p>
-                    </div>
-                    
-                    <div class="graph-card">
-                        <h3>Demand Categories</h3>
-                        <div class="graph-wrapper">
-                            <img src="images/demand_categories.png" alt="Demand Categories Pie Chart" class="graph-image">
-                        </div>
-                        <p class="graph-description">Breakdown of products by demand category</p>
-                    </div>
+        <section class="recent-files">
+            <div class="filter-bar">
+                <div class="filter-group search-icon">
+                    <label for="search-input">Search Products</label>
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Search by product name, brand...">
                 </div>
-                
-                <div class="graph-row">
-                    <div class="graph-card">
-                        <h3>Top Product Categories</h3>
-                        <div class="graph-wrapper">
-                            <img src="images/category_distribution.png" alt="Category Distribution" class="graph-image">
-                        </div>
-                        <p class="graph-description">Most common product categories in inventory</p>
-                    </div>
-                    
-                    <div class="graph-card">
-                        <h3>Price vs. Demand</h3>
-                        <div class="graph-wrapper">
-                            <img src="images/price_vs_demand.png" alt="Price vs Demand Relationship" class="graph-image">
-                        </div>
-                        <p class="graph-description">Relationship between product price and demand level</p>
-                    </div>
+                <div class="filter-group">
+                    <label for="category-filter">Category</label>
+                    <select id="category-filter">
+                        <option value="">All Categories</option>
+                        <!-- Categories will be populated dynamically -->
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="demand-filter">Demand Type</label>
+                    <select id="demand-filter">
+                        <option value="">All Demand Types</option>
+                        <option value="High Demand">High Demand</option>
+                        <option value="Medium Demand">Medium Demand</option>
+                        <option value="Low Demand">Low Demand</option>
+                    </select>
+                </div>
+                <div class="filter-buttons">
+                    <button id="reset-filters" class="secondary"><i class="fas fa-undo"></i> Reset</button>
                 </div>
             </div>
             
-            <div class="insights-panel">
-                <h3><i class="fas fa-lightbulb"></i> Key Insights</h3>
-                <ul>
-                    <li><strong>Demand Distribution:</strong> <span id="demand-insight">Most products fall in the medium demand category, suggesting balanced inventory allocation.</span></li>
-                    <li><strong>Price Sensitivity:</strong> <span id="price-insight">Higher priced items tend to have lower demand, with some notable exceptions.</span></li>
-                    <li><strong>Category Performance:</strong> <span id="category-insight">Household Essentials and Dairy are the top performing categories.</span></li>
-                </ul>
+            <div class="stats-bar">
+                <div class="stats-card">
+                    <h3>Total Products</h3>
+                    <div class="stat-value" id="total-count">0</div>
+                </div>
+                <div class="stats-card">
+                    <h3>High Demand</h3>
+                    <div class="stat-value count-high" id="high-count">0</div>
+                </div>
+                <div class="stats-card">
+                    <h3>Medium Demand</h3>
+                    <div class="stat-value count-medium" id="medium-count">0</div>
+                </div>
+                <div class="stats-card">
+                    <h3>Low Demand</h3>
+                    <div class="stat-value count-low" id="low-count">0</div>
+                </div>
             </div>
             
-            <div class="action-buttons">
-                <button id="generate-report-btn" onclick="generateStockReport()">Generate Full Report</button>
-                <button id="refresh-data-btn" class="secondary" onclick="refreshStockData()">Refresh Data</button>
+            <div class="audit-header">
+                <h2>Audit Data</h2>
+                <div class="audit-actions">
+                    <button id="export-csv"><i class="fas fa-download"></i> Export</button>
+                    <button id="print-table" class="secondary"><i class="fas fa-print"></i> Print</button>
+                </div>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Qty</th>
+                            <th>Brand</th>
+                            <th>Sales</th>
+                            <th>Demand Score</th>
+                            <th>Demand Status</th>
+                            <th>Strategy</th>
+                        </tr>
+                    </thead>
+                    <tbody id="audit-data-table">
+                        <!-- Data will be inserted dynamically -->
+                    </tbody>
+                </table>
             </div>
         </section>
-
-        <section id="audits-section" class="section" style="display: none;">
-            <div class="recent-files">
-                <h2>Recent Audits</h2>
-                
-                <!-- Add audit activity log -->
-                <div class="recent-activity">
-                    <h3><i class="fas fa-history"></i> Audit Activity Log</h3>
-                    <ul class="audit-list" id="audit-log">
-                        <li>No activity yet.</li>
-                    </ul>
-                </div>
-                
-                <!-- Add audit entries list -->
-                <div class="audit-entries">
-                    <h3><i class="fas fa-clipboard-list"></i> Audit Entries</h3>
-                    <ul id="audit-list">
-                        <!-- Audits will be inserted here -->
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="add-audit-section" class="section" style="display: none;">
-    <div class="add-audit">
-        <h2><i class="fas fa-plus-circle"></i> Add New Audit</h2>
-        
-        <form id="audit-form" class="card-form">
-            <div class="form-grid">
-                <div class="form-column">
-                    <div class="form-group">
-                        <label for="item_name">Product Name</label>
-                        <input type="text" id="item_name" placeholder="Enter product name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="category">Category</label>
-                        <input type="text" id="category" placeholder="E.g. Electronics, Dairy, etc." required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="price">Price ($)</label>
-                        <input type="number" id="price" placeholder="0.00" step="0.01" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="quantity">Quantity</label>
-                        <input type="number" id="quantity" placeholder="0" required>
-                    </div>
-                </div>
-                
-                <div class="form-column">
-                    <div class="form-group">
-                        <label for="brand">Brand</label>
-                        <input type="text" id="brand" placeholder="Product brand" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="sales_volume">Sales Volume</label>
-                        <input type="number" id="sales_volume" placeholder="0" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="warehouse">Warehouse</label>
-                        <select id="warehouse" required>
-                            <option value="" disabled selected>Select Warehouse</option>
-                            <option value="Warehouse A">Warehouse A</option>
-                            <option value="Warehouse B">Warehouse B</option>
-                            <option value="Warehouse C">Warehouse C</option>
-                            <option value="Warehouse D">Warehouse D</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="status">Status</label>
-                        <select id="status" required>
-                            <option value="" disabled selected>Select Status</option>
-                            <option value="In Stock">In Stock</option>
-                            <option value="Low Stock">Low Stock</option>
-                            <option value="Out of Stock">Out of Stock</option>
-                            <option value="Discontinued">Discontinued</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="form-actions">
-                <button type="submit">Add Audit</button>
-                <button type="reset" class="secondary">Reset</button>
-            </div>
-        </form>
-        
-        <div id="audit-result-message" class="result-message"></div>
     </div>
-</section>
-
-    </div>
+    <!-- <footer>
+        <p>&copy; 2025 Warehouse Audit Systems</p>
+    </footer> -->
     <script>
+        // Store the full dataset to make filtering easier
+        let fullInventoryData = [];
+        let uniqueCategories = new Set();
+        
         document.addEventListener('DOMContentLoaded', function() {
-            fetchAudits();
-            
-            // Add event listener for the form submission
-            const auditForm = document.getElementById('audit-form');
-            if (auditForm) {
-                auditForm.addEventListener('submit', handleAuditFormSubmit);
-            } else {
-                console.error("Audit form not found in the document");
-            }
-            
-            // Check for audit status updates
-            checkAuditStatus();
-
-            // Restore selected warehouse if available
-            const selectedWarehouse = localStorage.getItem('selected-warehouse');
-            if (selectedWarehouse) {
-                const warehouseSelect = document.getElementById('dashboard-warehouse-select');
-                if (warehouseSelect) {
-                    warehouseSelect.value = selectedWarehouse;
-                    selectWarehouse(selectedWarehouse);
-                }
-            }
-        });
-
-        async function handleAuditFormSubmit(event) {
-            event.preventDefault();
-            
-            const resultMessage = document.getElementById('audit-result-message');
-            resultMessage.style.display = 'block';
-            
-            // Format the data to match your blink.json structure
-            const newAuditData = {
-                index: generateNewIndex(), // Function to generate unique index
-                product: document.getElementById('item_name').value,
-                category: document.getElementById('category')?.value || "Uncategorized", // Add a category field to your form
-                price: parseFloat(document.getElementById('price')?.value || "0"),       // Add a price field to your form
-                quantity: parseInt(document.getElementById('quantity').value),
-                brand: document.getElementById('brand')?.value || "Generic",             // Add a brand field to your form
-                "sales volume": parseInt(document.getElementById('sales_volume')?.value || "0"), // Add sales_volume field
-                normalized_demand: calculateNormalizedDemand(
-                    parseInt(document.getElementById('sales_volume')?.value || "0")
-                ),
-                demand_category: determineDemandCategory(
-                    parseFloat(document.getElementById('normalized_demand')?.value || "0")
-                ),
-                inventory_strategy: determineInventoryStrategy(
-                    parseFloat(document.getElementById('normalized_demand')?.value || "0")
-                ),
-                warehouse: document.getElementById('warehouse').value,
-                status: document.getElementById('status').value,
-                audit_date: new Date().toISOString()
-            };
-            
-            try {
-                console.log('Submitting audit data:', newAuditData);
-                
-                // Save to localStorage for persistence
-                saveAuditToLocalStorage(newAuditData);
-                
-                // Add to the visible audit list
-                addAuditToList(newAuditData);
-                
-                // Update the audit log
-                addToAuditLog(`Added audit for ${newAuditData.product}`);
-                
-                // Try to send to API if it's running
-                try {
-                    const response = await fetch('http://127.0.0.1:5000/api/audits', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(newAuditData)
-                    });
-                    
-                    if (response.ok) {
-                        resultMessage.innerHTML = `
-                            <div style="color: green; background: #e8f5e9; padding: 10px; border-radius: 4px;">
-                                Audit added successfully to the database!
-                            </div>`;
-                        fetchAudits(); // Refresh the list from server
-                    } else {
-                        const errorData = await response.json();
-                        console.warn('API returned error:', errorData);
-                        resultMessage.innerHTML = `
-                            <div style="color: #856404; background: #fff3cd; padding: 10px; border-radius: 4px;">
-                                Added locally only. Server message: ${errorData.error || errorData.message || 'Unknown error'}
-                            </div>
-                            <button id="download-json" style="margin-top: 10px; padding: 8px 16px;">Download JSON Data</button>`;
-                            
-                        // Add download button functionality
-                        document.getElementById('download-json').addEventListener('click', downloadJsonFile);
+            // Try to load the CSV file but provide a fallback demo data button
+            fetch('blinkit.csv')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
                     }
-                } catch (apiError) {
-                    console.warn('API not available:', apiError);
-                    resultMessage.innerHTML = `
-                        <div style="color: #856404; background: #fff3cd; padding: 10px; border-radius: 4px;">
-                            Added locally only. API not available (${apiError.message})
+                    return response.text();
+                })
+                .then(csvText => {
+                    fullInventoryData = parseCSV(csvText);
+                    initializeFilters(fullInventoryData);
+                    displayInventoryData(fullInventoryData);
+                    updateStats(fullInventoryData);
+                })
+                .catch(error => {
+                    console.error('Error loading CSV:', error);
+                    
+                    // Show a more helpful message with a button to load demo data
+                    const container = document.querySelector('.table-container');
+                    container.innerHTML = `
+                        <div class="data-message">
+                            <h3>Unable to load inventory data</h3>
+                            <p>Your browser cannot load local files directly due to security policies.</p>
+                            <p><strong>Solutions:</strong></p>
+                            <ol>
+                                <li>Use VS Code Live Server extension</li>
+                                <li>Run a Python HTTP server: <code>python -m http.server</code></li>
+                            </ol>
+                            <button id="load-demo-data"><i class="fas fa-database"></i> Load Sample Data</button>
                         </div>
-                        <button id="download-json" style="margin-top: 10px; padding: 8px 16px;">Download JSON Data</button>`;
-                        
-                    // Add download button functionality
-                    document.getElementById('download-json').addEventListener('click', downloadJsonFile);
-                }
-                
-                // Reset the form
-                document.getElementById('audit-form').reset();
-                
-            } catch (error) {
-                console.error('Error in audit submission:', error);
-                resultMessage.innerHTML = `<div style="color: #721c24; background: #f8d7da; padding: 10px; border-radius: 4px;">
-                    Error adding audit: ${error.message}</div>`;
-            }
-        }
-
-        // Helper functions to support the form submission
-        function generateNewIndex() {
-            // Get existing data
-            const storedData = localStorage.getItem('blink_inventory_data');
-            const inventoryData = storedData ? JSON.parse(storedData) : [];
-            
-            // Find the maximum index
-            let maxIndex = 0;
-            inventoryData.forEach(item => {
-                const index = parseInt(item.index);
-                if (index > maxIndex) maxIndex = index;
-            });
-            
-            // Return next index
-            return maxIndex + 1;
-        }
-
-        function calculateNormalizedDemand(salesVolume) {
-            // Get highest sales volume for normalization
-            const storedData = localStorage.getItem('blink_inventory_data');
-            const inventoryData = storedData ? JSON.parse(storedData) : [];
-            
-            let maxSalesVolume = 50; // Default if no data
-            
-            inventoryData.forEach(item => {
-                const volume = parseInt(item['sales volume'] || 0);
-                if (volume > maxSalesVolume) maxSalesVolume = volume;
-            });
-            
-            // Normalize
-            return salesVolume / maxSalesVolume;
-        }
-
-        function determineDemandCategory(normalizedDemand) {
-            if (normalizedDemand >= 0.5) return "High Demand";
-            if (normalizedDemand >= 0.3) return "Medium Demand";
-            return "Low Demand";
-        }
-
-        function determineInventoryStrategy(normalizedDemand) {
-            if (normalizedDemand >= 0.5) return "Central warehouse, closest to delivery hubs";
-            if (normalizedDemand >= 0.3) return "Regional warehouses, moderate priority";
-            return "Stored in secondary locations, replenished as needed";
-        }
-
-        function saveAuditToLocalStorage(auditData) {
-            // Get existing data
-            const storedData = localStorage.getItem('blink_inventory_data');
-            const inventoryData = storedData ? JSON.parse(storedData) : [];
-            
-            // Add new data
-            inventoryData.push(auditData);
-            
-            // Save back to localStorage
-            localStorage.setItem('blink_inventory_data', JSON.stringify(inventoryData));
-        }
-
-        function downloadJsonFile() {
-            const storedData = localStorage.getItem('blink_inventory_data');
-            if (!storedData) {
-                alert('No data to download');
-                return;
-            }
-            
-            // Format the JSON data nicely
-            const formattedData = JSON.stringify(JSON.parse(storedData), null, 2);
-            
-            // Create a blob and download link
-            const blob = new Blob([formattedData], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'blink.json';
-            document.body.appendChild(a);
-            a.click();
-            
-            // Clean up
-            setTimeout(() => {
-                URL.revokeObjectURL(url);
-                document.body.removeChild(a);
-            }, 0);
-        }
-
-        // Function to add an audit to the list without requiring the API
-        function addAuditToList(auditData) {
-            const auditList = document.getElementById('audit-list');
-            
-            if (!auditList) return;
-            
-            const li = document.createElement('li');
-            const now = new Date().toLocaleString();
-            
-            // Create a more detailed audit entry
-            li.innerHTML = `
-                <div class="audit-info">
-                    <strong>${auditData.product}</strong> - 
-                    ${auditData.category} - 
-                    Qty: ${auditData.quantity} - 
-                    ${auditData.warehouse}
-                </div>
-                <span class="audit-time">${now}</span>
-            `;
-            
-            // Add to the beginning of the list for better visibility
-            if (auditList.firstChild) {
-                auditList.insertBefore(li, auditList.firstChild);
-            } else {
-                auditList.appendChild(li);
-            }
-        }
-
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => section.style.display = 'none');
-            document.getElementById(sectionId).style.display = 'block';
-        }
-
-        async function fetchAudits() {
-            try {
-                const auditList = document.getElementById('audit-list');
-                if (!auditList) return;
-                
-                // Try to get data from API first
-                try {
-                    let response = await fetch('http://127.0.0.1:5000/api/audits');
-                    if (response.ok) {
-                        let audits = await response.json();
-                        updateAuditList(audits);
-                        return;
-                    }
-                } catch (apiError) {
-                    console.warn('API not available, using local storage:', apiError);
-                }
-                
-                // If API fails, get from localStorage
-                const storedData = localStorage.getItem('blink_inventory_data');
-                if (storedData) {
-                    const inventoryData = JSON.parse(storedData);
-                    updateAuditList(inventoryData);
-                } else {
-                    auditList.innerHTML = '<li>No audits found. Add your first audit.</li>';
-                }
-            } catch (error) {
-                console.error('Error fetching audits:', error);
-            }
-        }
-
-        // New function to update the audit list with consistent formatting
-        function updateAuditList(audits) {
-            const auditList = document.getElementById('audit-list');
-            if (!auditList) return;
-            
-            auditList.innerHTML = '';
-            
-            if (audits.length === 0) {
-                auditList.innerHTML = '<li>No audits found. Add your first audit.</li>';
-                return;
-            }
-            
-            // Sort audits by date (newest first)
-            audits.sort((a, b) => {
-                const dateA = a.audit_date ? new Date(a.audit_date) : new Date();
-                const dateB = b.audit_date ? new Date(b.audit_date) : new Date();
-                return dateB - dateA;
-            });
-            
-            // Add each audit to the list
-            audits.forEach(audit => {
-                const li = document.createElement('li');
-                const auditDate = audit.audit_date ? new Date(audit.audit_date).toLocaleString() : new Date().toLocaleString();
-                
-                li.innerHTML = `
-                    <div class="audit-info">
-                        <strong>${audit.product || audit.item_name}</strong> - 
-                        ${audit.category || 'N/A'} - 
-                        Qty: ${audit.quantity} - 
-                        ${audit.warehouse}
-                    </div>
-                    <span class="audit-time">${auditDate}</span>
-                `;
-                
-                auditList.appendChild(li);
-            });
-        }
-
-        function startAudit(type) {
-            // Special case for Cycle Counting - redirect to inventory analysis page
-            if (type === 'Cycle Counting') {
-                window.location.href = 'inventory-analysis.html';
-                return;
-            }
-            
-            // For other audit types
-            document.getElementById(type.toLowerCase().replace(/ /g, '-') + '-status').textContent = 'In Progress';
-            addToAuditLog(`Started ${type} audit`);
-        }
-
-        function completeAudit(type){
-            document.getElementById(type.toLowerCase().replace(/ /g, '-') + '-status').textContent = 'Completed';
-            addToAuditLog(`Completed ${type} audit`);
-        }
-
-        // Add this function to your existing script section
-        function checkAuditStatus() {
-            // Check cycle counting status first
-            const cycleStatus = localStorage.getItem('cycle-counting-status');
-            if (cycleStatus) {
-                const statusElement = document.getElementById('cycle-status');
-                if (statusElement) {
-                    statusElement.textContent = cycleStatus;
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Product</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Qty</th>
+                                    <th>Brand</th>
+                                    <th>Sales</th>
+                                    <th>Demand Score</th>
+                                    <th>Demand Status</th>
+                                    <th>Strategy</th>
+                                </tr>
+                            </thead>
+                            <tbody id="audit-data-table">
+                                <!-- Data will be inserted dynamically -->
+                            </tbody>
+                        </table>
+                    `;
                     
-                    // Add visual indication if completed
-                    if (cycleStatus === 'Completed') {
-                        statusElement.style.color = 'green';
-                        statusElement.style.fontWeight = 'bold';
-                    }
-                }
-            }
-            
-            // Check if any audit action was recorded
-            const auditAction = localStorage.getItem('audit-action');
-            if (auditAction) {
-                // Get the timestamp or use current time
-                let actionTime = new Date().toLocaleString();
-                const storedTime = localStorage.getItem('audit-action-time');
-                if (storedTime) {
-                    actionTime = new Date(storedTime).toLocaleString();
-                }
-                
-                // Add to the audit log if it exists
-                addToAuditLog(auditAction);
-                
-                // Clear the stored action to prevent duplicate entries
-                localStorage.removeItem('audit-action');
-                localStorage.removeItem('audit-action-time');
-            }
-        }
-
-        // Add this function to your script section
-
-        function selectWarehouse(warehouseValue) {
-            if (!warehouseValue) return;
-            
-            console.log(`Selected warehouse: ${warehouseValue}`);
-            
-            // Store the selected warehouse in localStorage
-            localStorage.setItem('selected-warehouse', warehouseValue);
-            
-            // Update any UI elements that should reflect the selected warehouse
-            document.querySelectorAll('.warehouse-dependent').forEach(element => {
-                element.textContent = element.textContent.replace(/Warehouse [A-D]/, warehouseValue);
-            });
-            
-            // Add to the audit log
-            addToAuditLog(`Selected ${warehouseValue}`);
-            
-            // Optional: Pre-select this warehouse in the Add Audit form
-            const auditFormWarehouseSelect = document.getElementById('warehouse');
-            if (auditFormWarehouseSelect) {
-                auditFormWarehouseSelect.value = warehouseValue;
-            }
-            
-            // You could also load warehouse-specific data here
-            // fetchWarehouseData(warehouseValue);
-        }
-
-        // Update the function that adds logs to handle the moved audit log section
-        function addToAuditLog(message) {
-            const auditLog = document.getElementById('audit-log');
-            if (!auditLog) return;
-            
-            const now = new Date().toLocaleString();
-            
-            // Create a log entry
-            const li = document.createElement('li');
-            li.innerHTML = `
-                <div class="log-message">${message}</div>
-                <span class="audit-time">${now}</span>
-            `;
-            
-            // Add to the beginning of the list
-            if (auditLog.firstChild) {
-                auditLog.insertBefore(li, auditLog.firstChild);
-            } else {
-                auditLog.appendChild(li);
-            }
-            
-            // Remove "No activity yet" message if it exists
-            const noActivityMsg = auditLog.querySelector('li:contains("No activity yet")');
-            if (noActivityMsg) {
-                auditLog.removeChild(noActivityMsg);
-            }
-        }
-
-        // Add these functions to your script section:
-
-        function generateStockReport() {
-            alert("Generating full stock report. This will be available for download shortly.");
-            
-            // Here you would typically generate a PDF or other report format
-            // For this example, we'll just simulate it with a timeout
-            setTimeout(() => {
-                const now = new Date().toISOString().split('T')[0];
-                alert(`Stock report for ${now} is ready!`);
-                
-                // Add to audit log
-                addToAuditLog(`Generated full stock report`);
-            }, 2000);
-        }
-
-        function refreshStockData() {
-            const refreshBtn = document.getElementById('refresh-data-btn');
-            const originalText = refreshBtn.textContent;
-            
-            refreshBtn.textContent = "Refreshing...";
-            refreshBtn.disabled = true;
-            
-            // Simulate data refresh with a timeout
-            setTimeout(() => {
-                // Reload the images with a cache-busting parameter
-                document.querySelectorAll('.graph-image').forEach(img => {
-                    const src = img.src.split('?')[0]; // Remove any existing query params
-                    img.src = src + '?t=' + new Date().getTime();
+                    // Add event listener for the demo data button
+                    document.getElementById('load-demo-data').addEventListener('click', function() {
+                        const sampleData = [
+                            {index: 1, product: "Colgate Toothpaste", category: "Household Essentials", price: "475.85", quantity: "156", brand: "Colgate", "sales volume": "12", normalized_demand: "0.1590909091", demand_category: "Low Demand", inventory_strategy: "Stored in secondary locations, replenished as needed"},
+                            {index: 2, product: "Britannia Cookies", category: "Bakery", price: "86.45", quantity: "264", brand: "Britannia", "sales volume": "15", normalized_demand: "0.2272727273", demand_category: "Low Demand", inventory_strategy: "Stored in secondary locations, replenished as needed"},
+                            {index: 3, product: "Amul Butter", category: "Dairy", price: "304.55", quantity: "201", brand: "Amul", "sales volume": "7", normalized_demand: "0.0454545455", demand_category: "Low Demand", inventory_strategy: "Stored in secondary locations, replenished as needed"},
+                            {index: 4, product: "Fresh Milk", category: "Dairy", price: "76.50", quantity: "350", brand: "Amul", "sales volume": "55", normalized_demand: "0.6818181818", demand_category: "High Demand", inventory_strategy: "Central warehouse, closest to delivery hubs"},
+                            {index: 5, product: "Hand Sanitizer", category: "Health & Hygiene", price: "120.25", quantity: "180", brand: "Dettol", "sales volume": "35", normalized_demand: "0.4318181818", demand_category: "Medium Demand", inventory_strategy: "Regional warehouses, moderate priority"},
+                            {index: 6, product: "Rice (5kg)", category: "Groceries", price: "320.85", quantity: "125", brand: "India Gate", "sales volume": "42", normalized_demand: "0.5136363636", demand_category: "High Demand", inventory_strategy: "Central warehouse, closest to delivery hubs"}
+                        ];
+                        fullInventoryData = sampleData;
+                        initializeFilters(fullInventoryData);
+                        displayInventoryData(fullInventoryData);
+                        updateStats(fullInventoryData);
+                        this.disabled = true;
+                        this.innerHTML = '<i class="fas fa-check-circle"></i> Sample Data Loaded';
+                    });
                 });
                 
-                refreshBtn.textContent = originalText;
-                refreshBtn.disabled = false;
+            // Add event listeners for export and print buttons
+            document.getElementById('export-csv').addEventListener('click', function() {
+                alert('Export functionality would be implemented here');
+                // In a real implementation, would generate and download a CSV file
+            });
+            
+            document.getElementById('print-table').addEventListener('click', function() {
+                window.print();
+            });
+            
+            // Set up filter event listeners
+            document.getElementById('search-input').addEventListener('input', applyFilters);
+            document.getElementById('category-filter').addEventListener('change', applyFilters);
+            document.getElementById('demand-filter').addEventListener('change', applyFilters);
+            document.getElementById('reset-filters').addEventListener('click', resetFilters);
+        });
+
+        // Function to initialize filter dropdowns
+        function initializeFilters(data) {
+            // Populate category filter
+            const categorySelect = document.getElementById('category-filter');
+            categorySelect.innerHTML = '<option value="">All Categories</option>';
+            
+            // Extract unique categories
+            uniqueCategories = new Set();
+            data.forEach(item => {
+                if (item.category) {
+                    uniqueCategories.add(item.category);
+                }
+            });
+            
+            // Add category options
+            Array.from(uniqueCategories).sort().forEach(category => {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = category;
+                categorySelect.appendChild(option);
+            });
+        }
+        
+        // Function to apply filters
+        function applyFilters() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const categoryFilter = document.getElementById('category-filter').value;
+            const demandFilter = document.getElementById('demand-filter').value;
+            
+            // Filter the data
+            const filteredData = fullInventoryData.filter(item => {
+                // Search filter
+                const matchesSearch = !searchTerm || 
+                    item.product.toLowerCase().includes(searchTerm) || 
+                    item.brand.toLowerCase().includes(searchTerm);
                 
-                // Add to audit log
-                addToAuditLog(`Refreshed stock analysis data`);
+                // Category filter
+                const matchesCategory = !categoryFilter || item.category === categoryFilter;
                 
-                // Show a success message
-                alert("Stock data has been refreshed!");
-            }, 2000);
+                // Demand filter
+                const matchesDemand = !demandFilter || item.demand_category === demandFilter;
+                
+                return matchesSearch && matchesCategory && matchesDemand;
+            });
+            
+            // Display the filtered data
+            displayInventoryData(filteredData);
+            updateStats(filteredData);
+        }
+        
+        // Function to reset all filters
+        function resetFilters() {
+            document.getElementById('search-input').value = '';
+            document.getElementById('category-filter').value = '';
+            document.getElementById('demand-filter').value = '';
+            
+            // Display all data
+            displayInventoryData(fullInventoryData);
+            updateStats(fullInventoryData);
+        }
+        
+        // Function to update statistics
+        function updateStats(data) {
+            document.getElementById('total-count').textContent = data.length;
+            
+            const highDemand = data.filter(item => item.demand_category.includes('High')).length;
+            const mediumDemand = data.filter(item => item.demand_category.includes('Medium')).length;
+            const lowDemand = data.filter(item => item.demand_category.includes('Low')).length;
+            
+            document.getElementById('high-count').textContent = highDemand;
+            document.getElementById('medium-count').textContent = mediumDemand;
+            document.getElementById('low-count').textContent = lowDemand;
+        }
+
+        // Function to parse CSV text into an array of objects
+        function parseCSV(csvText) {
+            // Split into lines and get header row
+            const lines = csvText.trim().split('\n');
+            const headers = lines[0].split(',').map(header => header.trim());
+            
+            // Process each data row
+            const data = [];
+            for (let i = 1; i < lines.length; i++) {
+                // Handle cases where a field might contain commas within quotes
+                const row = {};
+                let currentLine = lines[i];
+                const values = [];
+                let insideQuotes = false;
+                let currentValue = '';
+                
+                // Parse CSV properly handling quoted values
+                for (let j = 0; j < currentLine.length; j++) {
+                    const char = currentLine[j];
+                    if (char === '"') {
+                        insideQuotes = !insideQuotes;
+                    } else if (char === ',' && !insideQuotes) {
+                        values.push(currentValue.trim());
+                        currentValue = '';
+                    } else {
+                        currentValue += char;
+                    }
+                }
+                values.push(currentValue.trim()); // Add the last value
+                
+                // Create object from headers and values
+                headers.forEach((header, index) => {
+                    // Clean up any quotes around values
+                    let value = values[index] || '';
+                    if (value.startsWith('"') && value.endsWith('"')) {
+                        value = value.substring(1, value.length - 1);
+                    }
+                    row[header] = value;
+                });
+                
+                data.push(row);
+            }
+            
+            return data;
+        }
+
+        function displayInventoryData(data) {
+            let table = document.getElementById('audit-data-table');
+            table.innerHTML = '';
+            
+            if (data.length === 0) {
+                // Show no results message
+                const noResultsRow = document.createElement('tr');
+                noResultsRow.innerHTML = `<td colspan="10" class="no-results">No matching products found</td>`;
+                table.appendChild(noResultsRow);
+                return;
+            }
+            
+            data.forEach(item => {
+                // Convert string values to appropriate types for display
+                const index = parseInt(item.index) || item.index;
+                const price = parseFloat(item.price) || 0;
+                const quantity = parseInt(item.quantity) || 0;
+                const salesVolume = parseInt(item['sales volume'] || item.sales_volume) || 0;
+                const normalizedDemand = parseFloat(item.normalized_demand) || 0;
+                
+                // Determine demand class for styling
+                let demandClass = 'low-demand';
+                if (item.demand_category.includes('High')) {
+                    demandClass = 'high-demand';
+                } else if (item.demand_category.includes('Medium')) {
+                    demandClass = 'medium-demand';
+                }
+                
+                // Truncate strategy text to keep table clean
+                const strategy = item.inventory_strategy.length > 30 ? 
+                    item.inventory_strategy.substring(0, 30) + '...' : 
+                    item.inventory_strategy;
+                
+                let row = `<tr>
+                    <td>${index}</td>
+                    <td><strong>${item.product}</strong></td>
+                    <td>${item.category}</td>
+                    <td>₹${price.toFixed(2)}</td>
+                    <td>${quantity}</td>
+                    <td>${item.brand}</td>
+                    <td>${salesVolume}</td>
+                    <td>${normalizedDemand.toFixed(2)}</td>
+                    <td><span class="demand-chip ${demandClass}">${item.demand_category}</span></td>
+                    <td title="${item.inventory_strategy}">${strategy}</td>
+                </tr>`;
+                table.innerHTML += row;
+            });
         }
     </script>
 </body>
