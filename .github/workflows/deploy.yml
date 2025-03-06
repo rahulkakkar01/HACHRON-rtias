@@ -1,13 +1,25 @@
-name: Deploy Web App
-on: push
+name: 🚀 Deploy Website to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Runs when changes are pushed to the 'main' branch
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-      - name: Deploy to GitHub Pages
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🔨 Setup Node.js (Required for Deployment)
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: 🚀 Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          publish_dir: ./web_application
-          publish_branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./web_application  # This is the folder where your website files are located
