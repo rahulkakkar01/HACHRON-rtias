@@ -3,10 +3,16 @@ name: 🚀 Deploy Website to GitHub Pages
 on:
   push:
     branches:
-      - main  # Runs when changes are pushed to the 'main' branch
+      - main  # Deploy on push to 'main' branch
+  workflow_dispatch:  # Allows manual trigger from GitHub Actions
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,8 +24,28 @@ jobs:
         with:
           node-version: '18'
 
+      - name: 📦 Upload Website Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: website-artifact
+          path: ./web_application  # Save website files as artifacts
+
+  deploy:
+    needs: build  # Deploy job runs after build job
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Download Website Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: website-artifact
+          path: ./web_application  # Restore files from artifacts
+
       - name: 🚀 Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./web_application  # This is the folder where your website files are located
+          publish_dir: ./web_application  # Deploy the 'web_application' folder
+
+      - name: 🔗 Provide Deployment Link
+        run: echo "Website deployed at https://PriyanshuKSharma.github.io/fantastic4/"
