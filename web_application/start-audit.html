@@ -12,11 +12,11 @@
     <style>
         .table-container {
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
             padding: 20px;
             margin-top: 20px;
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 1px solid #f0f0f0;
             overflow-x: auto;
         }
         
@@ -28,20 +28,21 @@
         th, td {
             padding: 12px 16px;
             text-align: left;
-            border-bottom: 1px solid #edf2f7;
-            font-size: 14px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.9rem;
         }
         
         th {
-            background-color: #1e293b;
-            color: white;
+            background-color: #f9fafb;
+            color: #111827;
             font-weight: 500;
             position: sticky;
             top: 0;
+            border-bottom: 2px solid #e5e7eb;
         }
         
         tbody tr:hover {
-            background-color: #f8fafc;
+            background-color: #f9fafb;
         }
         
         .audit-header {
@@ -53,8 +54,12 @@
         
         .audit-header h2 {
             margin: 0;
+            font-size: 1.2rem;
             font-weight: 500;
-            color: #1e293b;
+            color: #111827;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .audit-actions {
@@ -71,14 +76,17 @@
         .data-message {
             text-align: center;
             padding: 25px;
-            background: #f8fafc;
+            background: #f9fafb;
             border-radius: 8px;
             margin-bottom: 20px;
+            border: 1px solid #f0f0f0;
         }
         
         .data-message h3 {
-            color: #1e293b;
+            color: #111827;
             margin-top: 0;
+            font-size: 1.1rem;
+            font-weight: 500;
         }
         
         .data-message ol {
@@ -103,32 +111,32 @@
         }
         
         .high-demand {
-            background: #dcfce7;
-            color: #166534;
+            background: #ecfdf5;
+            color: #064e3b;
         }
         
         .medium-demand {
-            background: #e0f2fe;
-            color: #0369a1;
+            background: #eff6ff;
+            color: #1e40af;
         }
         
         .low-demand {
-            background: #fef3c7;
+            background: #fffbeb;
             color: #92400e;
         }
         
         /* Filter bar styling */
         .filter-bar {
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
             padding: 20px;
             margin-bottom: 20px;
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 1px solid #f0f0f0;
             display: flex;
             flex-wrap: wrap;
             gap: 15px;
-            align-items: center;
+            align-items: flex-end;
         }
         
         .filter-group {
@@ -203,25 +211,25 @@
         .stats-card {
             background: white;
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
             padding: 15px;
             flex: 1;
             min-width: 150px;
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 1px solid #f0f0f0;
             text-align: center;
         }
         
         .stats-card h3 {
-            margin: 0 0 5px 0;
-            font-size: 14px;
-            color: #64748b;
-            font-weight: 500;
+            margin: 0 0 8px 0;
+            font-size: 0.9rem;
+            color: #6b7280;
+            font-weight: 400;
         }
         
         .stats-card .stat-value {
-            font-size: 24px;
+            font-size: 1.5rem;
             font-weight: 600;
-            color: #1e293b;
+            color: #111827;
         }
         
         .count-high {
@@ -242,9 +250,9 @@
         <h2><i class="fas fa-warehouse"></i> Inventory</h2>
         <ul>
             <li onclick="window.location.href='index.html'"><i class="fas fa-tachometer-alt"></i> Dashboard</li>
-            <li onclick="window.location.href='index.html#stock-section'"><i class="fas fa-cubes"></i> Stock Levels</li>
+            <!-- <li onclick="window.location.href='index.html#stock-section'"><i class="fas fa-cubes"></i> Stock Levels</li>
             <li onclick="window.location.href='index.html#audits-section'"><i class="fas fa-history"></i> Recent Audits</li>
-            <li onclick="window.location.href='index.html#add-audit-section'"><i class="fas fa-plus-circle"></i> Add Audit</li>
+            <li onclick="window.location.href='index.html#add-audit-section'"><i class="fas fa-plus-circle"></i> Add Audit</li> -->
         </ul>
     </div>
     <div class="main-content">
@@ -328,9 +336,9 @@
             </div>
         </section>
     </div>
-    <footer>
+    <!-- <footer>
         <p>&copy; 2025 Warehouse Audit Systems</p>
-    </footer>
+    </footer> -->
     <script>
         // Store the full dataset to make filtering easier
         let fullInventoryData = [];
