@@ -47,4 +47,4 @@ jobs:
           publish_dir: ./web_application  # Deploy the 'web_application' folder
 
       - name: 🔗 Provide Deployment Link
-        run: echo "Website deployed at https://PriyanshuKSharma.github.io/fantastic4/"
+        run: echo "Website deployed at https://PriyanshuKSharma.github.io/fantastic4/ "
