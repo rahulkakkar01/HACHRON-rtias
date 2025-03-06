@@ -3,30 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Start Audit</title>
+    <title>Start Audit - Quantum Leap</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+        .table-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid rgba(0,0,0,0.05);
+            overflow-x: auto;
+        }
+        
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
         }
+        
         th, td {
-            padding: 12px;
+            padding: 12px 16px;
             text-align: left;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #edf2f7;
+            font-size: 14px;
         }
+        
         th {
-            background-color: #1e1e2d;
+            background-color: #1e293b;
             color: white;
+            font-weight: 500;
+            position: sticky;
+            top: 0;
         }
-        tr:hover {
-            background-color: #f5f5f5;
+        
+        tbody tr:hover {
+            background-color: #f8fafc;
         }
-        .table-container {
-            overflow-x: auto;
-            margin-top: 20px;
+        
+        .audit-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .audit-header h2 {
+            margin: 0;
+            font-weight: 500;
+            color: #1e293b;
+        }
+        
+        .audit-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .audit-actions button {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .data-message {
+            text-align: center;
+            padding: 25px;
+            background: #f8fafc;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .data-message h3 {
+            color: #1e293b;
+            margin-top: 0;
+        }
+        
+        .data-message ol {
+            text-align: left;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        code {
+            background: #e2e8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        
+        /* Status chips for demand categories */
+        .demand-chip {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+        
+        .high-demand {
+            background: #dcfce7;
+            color: #166534;
+        }
+        
+        .medium-demand {
+            background: #e0f2fe;
+            color: #0369a1;
+        }
+        
+        .low-demand {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        /* Filter bar styling */
+        .filter-bar {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .filter-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #1e293b;
+            font-size: 14px;
+        }
+        
+        .filter-group input,
+        .filter-group select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            background-color: #f8fafc;
+            font-size: 14px;
+        }
+        
+        .filter-group input:focus,
+        .filter-group select:focus {
+            border-color: #4f46e5;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+        }
+        
+        .search-icon {
+            position: relative;
+        }
+        
+        .search-icon i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+            pointer-events: none;
+        }
+        
+        .search-icon input {
+            padding-left: 35px;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+        
+        /* No results message */
+        .no-results {
+            padding: 30px;
+            text-align: center;
+            color: #64748b;
+            font-style: italic;
+        }
+        
+        /* Stats bar */
+        .stats-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stats-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            padding: 15px;
+            flex: 1;
+            min-width: 150px;
+            border: 1px solid rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .stats-card h3 {
+            margin: 0 0 5px 0;
+            font-size: 14px;
+            color: #64748b;
+            font-weight: 500;
+        }
+        
+        .stats-card .stat-value {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .count-high {
+            color: #166534;
+        }
+        
+        .count-medium {
+            color: #0369a1;
+        }
+        
+        .count-low {
+            color: #92400e;
         }
     </style>
 </head>
@@ -35,6 +242,9 @@
         <h2><i class="fas fa-warehouse"></i> Inventory</h2>
         <ul>
             <li onclick="window.location.href='index.html'"><i class="fas fa-tachometer-alt"></i> Dashboard</li>
+            <li onclick="window.location.href='index.html#stock-section'"><i class="fas fa-cubes"></i> Stock Levels</li>
+            <li onclick="window.location.href='index.html#audits-section'"><i class="fas fa-history"></i> Recent Audits</li>
+            <li onclick="window.location.href='index.html#add-audit-section'"><i class="fas fa-plus-circle"></i> Add Audit</li>
         </ul>
     </div>
     <div class="main-content">
@@ -42,21 +252,73 @@
             <h1><i class="fas fa-clipboard-check"></i> Full Physical Inventory Audit</h1>
         </header>
         <section class="recent-files">
-            <h2>Audit Data</h2>
+            <div class="filter-bar">
+                <div class="filter-group search-icon">
+                    <label for="search-input">Search Products</label>
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Search by product name, brand...">
+                </div>
+                <div class="filter-group">
+                    <label for="category-filter">Category</label>
+                    <select id="category-filter">
+                        <option value="">All Categories</option>
+                        <!-- Categories will be populated dynamically -->
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="demand-filter">Demand Type</label>
+                    <select id="demand-filter">
+                        <option value="">All Demand Types</option>
+                        <option value="High Demand">High Demand</option>
+                        <option value="Medium Demand">Medium Demand</option>
+                        <option value="Low Demand">Low Demand</option>
+                    </select>
+                </div>
+                <div class="filter-buttons">
+                    <button id="reset-filters" class="secondary"><i class="fas fa-undo"></i> Reset</button>
+                </div>
+            </div>
+            
+            <div class="stats-bar">
+                <div class="stats-card">
+                    <h3>Total Products</h3>
+                    <div class="stat-value" id="total-count">0</div>
+                </div>
+                <div class="stats-card">
+                    <h3>High Demand</h3>
+                    <div class="stat-value count-high" id="high-count">0</div>
+                </div>
+                <div class="stats-card">
+                    <h3>Medium Demand</h3>
+                    <div class="stat-value count-medium" id="medium-count">0</div>
+                </div>
+                <div class="stats-card">
+                    <h3>Low Demand</h3>
+                    <div class="stat-value count-low" id="low-count">0</div>
+                </div>
+            </div>
+            
+            <div class="audit-header">
+                <h2>Audit Data</h2>
+                <div class="audit-actions">
+                    <button id="export-csv"><i class="fas fa-download"></i> Export</button>
+                    <button id="print-table" class="secondary"><i class="fas fa-print"></i> Print</button>
+                </div>
+            </div>
             <div class="table-container">
                 <table>
                     <thead>
                         <tr>
-                            <th>Index</th>
+                            <th>ID</th>
                             <th>Product</th>
                             <th>Category</th>
                             <th>Price</th>
-                            <th>Quantity</th>
+                            <th>Qty</th>
                             <th>Brand</th>
-                            <th>Sales Volume</th>
-                            <th>Normalized Demand</th>
-                            <th>Demand Category</th>
-                            <th>Inventory Strategy</th>
+                            <th>Sales</th>
+                            <th>Demand Score</th>
+                            <th>Demand Status</th>
+                            <th>Strategy</th>
                         </tr>
                     </thead>
                     <tbody id="audit-data-table">
@@ -66,10 +328,16 @@
             </div>
         </section>
     </div>
+    <!-- Remove the footer element that begins here
     <footer>
-        <p>&copy; 2025 Warehouse Audit Systems</p>
+        <p>&copy; 2025 Warehouse Audit Systems</p>  
     </footer>
+    -->
     <script>
+        // Store the full dataset to make filtering easier
+        let fullInventoryData = [];
+        let uniqueCategories = new Set();
+        
         document.addEventListener('DOMContentLoaded', function() {
             // Try to load the CSV file but provide a fallback demo data button
             fetch('blinkit.csv')
@@ -80,8 +348,10 @@
                     return response.text();
                 })
                 .then(csvText => {
-                    const data = parseCSV(csvText);
-                    displayInventoryData(data);
+                    fullInventoryData = parseCSV(csvText);
+                    initializeFilters(fullInventoryData);
+                    displayInventoryData(fullInventoryData);
+                    updateStats(fullInventoryData);
                 })
                 .catch(error => {
                     console.error('Error loading CSV:', error);
@@ -89,29 +359,29 @@
                     // Show a more helpful message with a button to load demo data
                     const container = document.querySelector('.table-container');
                     container.innerHTML = `
-                        <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 5px; margin-bottom: 20px;">
-                            <h3>Unable to load inventory data due to browser security restrictions</h3>
+                        <div class="data-message">
+                            <h3>Unable to load inventory data</h3>
                             <p>Your browser cannot load local files directly due to security policies.</p>
                             <p><strong>Solutions:</strong></p>
-                            <ol style="text-align: left; display: inline-block;">
+                            <ol>
                                 <li>Use VS Code Live Server extension</li>
                                 <li>Run a Python HTTP server: <code>python -m http.server</code></li>
                             </ol>
-                            <button id="load-demo-data" style="background: #4d79ff; color: white; border: none; padding: 10px 15px; border-radius: 5px; margin-top: 15px; cursor: pointer;">Load Sample Data for Testing</button>
+                            <button id="load-demo-data"><i class="fas fa-database"></i> Load Sample Data</button>
                         </div>
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Index</th>
+                                    <th>ID</th>
                                     <th>Product</th>
                                     <th>Category</th>
                                     <th>Price</th>
-                                    <th>Quantity</th>
+                                    <th>Qty</th>
                                     <th>Brand</th>
-                                    <th>Sales Volume</th>
-                                    <th>Normalized Demand</th>
-                                    <th>Demand Category</th>
-                                    <th>Inventory Strategy</th>
+                                    <th>Sales</th>
+                                    <th>Demand Score</th>
+                                    <th>Demand Status</th>
+                                    <th>Strategy</th>
                                 </tr>
                             </thead>
                             <tbody id="audit-data-table">
@@ -125,14 +395,110 @@
                         const sampleData = [
                             {index: 1, product: "Colgate Toothpaste", category: "Household Essentials", price: "475.85", quantity: "156", brand: "Colgate", "sales volume": "12", normalized_demand: "0.1590909091", demand_category: "Low Demand", inventory_strategy: "Stored in secondary locations, replenished as needed"},
                             {index: 2, product: "Britannia Cookies", category: "Bakery", price: "86.45", quantity: "264", brand: "Britannia", "sales volume": "15", normalized_demand: "0.2272727273", demand_category: "Low Demand", inventory_strategy: "Stored in secondary locations, replenished as needed"},
-                            {index: 3, product: "Amul Butter", category: "Dairy", price: "304.55", quantity: "201", brand: "Amul", "sales volume": "7", normalized_demand: "0.0454545455", demand_category: "Low Demand", inventory_strategy: "Stored in secondary locations, replenished as needed"}
+                            {index: 3, product: "Amul Butter", category: "Dairy", price: "304.55", quantity: "201", brand: "Amul", "sales volume": "7", normalized_demand: "0.0454545455", demand_category: "Low Demand", inventory_strategy: "Stored in secondary locations, replenished as needed"},
+                            {index: 4, product: "Fresh Milk", category: "Dairy", price: "76.50", quantity: "350", brand: "Amul", "sales volume": "55", normalized_demand: "0.6818181818", demand_category: "High Demand", inventory_strategy: "Central warehouse, closest to delivery hubs"},
+                            {index: 5, product: "Hand Sanitizer", category: "Health & Hygiene", price: "120.25", quantity: "180", brand: "Dettol", "sales volume": "35", normalized_demand: "0.4318181818", demand_category: "Medium Demand", inventory_strategy: "Regional warehouses, moderate priority"},
+                            {index: 6, product: "Rice (5kg)", category: "Groceries", price: "320.85", quantity: "125", brand: "India Gate", "sales volume": "42", normalized_demand: "0.5136363636", demand_category: "High Demand", inventory_strategy: "Central warehouse, closest to delivery hubs"}
                         ];
-                        displayInventoryData(sampleData);
+                        fullInventoryData = sampleData;
+                        initializeFilters(fullInventoryData);
+                        displayInventoryData(fullInventoryData);
+                        updateStats(fullInventoryData);
                         this.disabled = true;
-                        this.textContent = "Sample Data Loaded";
+                        this.innerHTML = '<i class="fas fa-check-circle"></i> Sample Data Loaded';
                     });
                 });
+                
+            // Add event listeners for export and print buttons
+            document.getElementById('export-csv').addEventListener('click', function() {
+                alert('Export functionality would be implemented here');
+                // In a real implementation, would generate and download a CSV file
+            });
+            
+            document.getElementById('print-table').addEventListener('click', function() {
+                window.print();
+            });
+            
+            // Set up filter event listeners
+            document.getElementById('search-input').addEventListener('input', applyFilters);
+            document.getElementById('category-filter').addEventListener('change', applyFilters);
+            document.getElementById('demand-filter').addEventListener('change', applyFilters);
+            document.getElementById('reset-filters').addEventListener('click', resetFilters);
         });
+
+        // Function to initialize filter dropdowns
+        function initializeFilters(data) {
+            // Populate category filter
+            const categorySelect = document.getElementById('category-filter');
+            categorySelect.innerHTML = '<option value="">All Categories</option>';
+            
+            // Extract unique categories
+            uniqueCategories = new Set();
+            data.forEach(item => {
+                if (item.category) {
+                    uniqueCategories.add(item.category);
+                }
+            });
+            
+            // Add category options
+            Array.from(uniqueCategories).sort().forEach(category => {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = category;
+                categorySelect.appendChild(option);
+            });
+        }
+        
+        // Function to apply filters
+        function applyFilters() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const categoryFilter = document.getElementById('category-filter').value;
+            const demandFilter = document.getElementById('demand-filter').value;
+            
+            // Filter the data
+            const filteredData = fullInventoryData.filter(item => {
+                // Search filter
+                const matchesSearch = !searchTerm || 
+                    item.product.toLowerCase().includes(searchTerm) || 
+                    item.brand.toLowerCase().includes(searchTerm);
+                
+                // Category filter
+                const matchesCategory = !categoryFilter || item.category === categoryFilter;
+                
+                // Demand filter
+                const matchesDemand = !demandFilter || item.demand_category === demandFilter;
+                
+                return matchesSearch && matchesCategory && matchesDemand;
+            });
+            
+            // Display the filtered data
+            displayInventoryData(filteredData);
+            updateStats(filteredData);
+        }
+        
+        // Function to reset all filters
+        function resetFilters() {
+            document.getElementById('search-input').value = '';
+            document.getElementById('category-filter').value = '';
+            document.getElementById('demand-filter').value = '';
+            
+            // Display all data
+            displayInventoryData(fullInventoryData);
+            updateStats(fullInventoryData);
+        }
+        
+        // Function to update statistics
+        function updateStats(data) {
+            document.getElementById('total-count').textContent = data.length;
+            
+            const highDemand = data.filter(item => item.demand_category.includes('High')).length;
+            const mediumDemand = data.filter(item => item.demand_category.includes('Medium')).length;
+            const lowDemand = data.filter(item => item.demand_category.includes('Low')).length;
+            
+            document.getElementById('high-count').textContent = highDemand;
+            document.getElementById('medium-count').textContent = mediumDemand;
+            document.getElementById('low-count').textContent = lowDemand;
+        }
 
         // Function to parse CSV text into an array of objects
         function parseCSV(csvText) {
@@ -184,6 +550,14 @@
             let table = document.getElementById('audit-data-table');
             table.innerHTML = '';
             
+            if (data.length === 0) {
+                // Show no results message
+                const noResultsRow = document.createElement('tr');
+                noResultsRow.innerHTML = `<td colspan="10" class="no-results">No matching products found</td>`;
+                table.appendChild(noResultsRow);
+                return;
+            }
+            
             data.forEach(item => {
                 // Convert string values to appropriate types for display
                 const index = parseInt(item.index) || item.index;
@@ -192,17 +566,30 @@
                 const salesVolume = parseInt(item['sales volume'] || item.sales_volume) || 0;
                 const normalizedDemand = parseFloat(item.normalized_demand) || 0;
                 
+                // Determine demand class for styling
+                let demandClass = 'low-demand';
+                if (item.demand_category.includes('High')) {
+                    demandClass = 'high-demand';
+                } else if (item.demand_category.includes('Medium')) {
+                    demandClass = 'medium-demand';
+                }
+                
+                // Truncate strategy text to keep table clean
+                const strategy = item.inventory_strategy.length > 30 ? 
+                    item.inventory_strategy.substring(0, 30) + '...' : 
+                    item.inventory_strategy;
+                
                 let row = `<tr>
                     <td>${index}</td>
-                    <td>${item.product}</td>
+                    <td><strong>${item.product}</strong></td>
                     <td>${item.category}</td>
                     <td>₹${price.toFixed(2)}</td>
                     <td>${quantity}</td>
                     <td>${item.brand}</td>
                     <td>${salesVolume}</td>
                     <td>${normalizedDemand.toFixed(2)}</td>
-                    <td>${item.demand_category}</td>
-                    <td>${item.inventory_strategy}</td>
+                    <td><span class="demand-chip ${demandClass}">${item.demand_category}</span></td>
+                    <td title="${item.inventory_strategy}">${strategy}</td>
                 </tr>`;
                 table.innerHTML += row;
             });
