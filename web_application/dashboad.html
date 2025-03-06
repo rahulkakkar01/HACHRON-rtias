@@ -3,9 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory Audit Dashboard - Quantum Leap</title>
+    <title>Inventory Analysis - Quantum Leap</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Add this to your existing style section in the head: -->
+    <style>
+        /* Additional styles for the form and dropdown */
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            background-color: #f8f9fa;
+            font-size: 14px;
+        }
+        
+        /* Style for the folder colors */
+        .folder.green {
+            background-color: #4CAF50;
+        }
+        
+        .folder.purple {
+            background-color: #9C27B0;
+        }
+
+        .warehouse-selector {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .warehouse-selector h3 {
+            color: #1e1e2d;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        #dashboard-warehouse-select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f8f9fa;
+            font-size: 16px;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        #dashboard-warehouse-select:hover {
+            border-color: #4d79ff;
+        }
+        
+        #dashboard-warehouse-select:focus {
+            border-color: #4d79ff;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(77, 121, 255, 0.2);
+        }
+    </style>
 </head>
 <body>
     <div class="sidebar">
@@ -15,8 +75,8 @@
             <li onclick="showSection('stock-section')"><i class="fas fa-cubes"></i> Stock Levels</li>
             <li onclick="showSection('audits-section')"><i class="fas fa-history"></i> Recent Audits</li>
             <li onclick="showSection('add-audit-section')"><i class="fas fa-plus-circle"></i> Add Audit</li>
-            <li><i class="fas fa-chart-line"></i> Reports (Coming Soon)</li>
-            <li><i class="fas fa-cog"></i> Settings (Coming Soon)</li>
+            <li><i class="fas fa-chart-line"></i> Reports </li>
+            <li><i class="fas fa-cog"></i> Settings </li>
         </ul>
     </div>
     <div class="main-content">
@@ -26,21 +86,27 @@
 
         <section id="dashboard-section" class="section">
             <div class="dashboard">
-                <div class="folder red"><i class="fas fa-box-open"></i> Products</div>
-                <div class="folder blue"><i class="fas fa-building"></i> Warehouse A</div>
-                <div class="folder yellow"><i class="fas fa-building"></i> Warehouse B</div>
+                <div class="warehouse-selector">
+                    <h3><i class="fas fa-building"></i> Select Warehouse</h3>
+                    <select id="dashboard-warehouse-select" onchange="selectWarehouse(this.value)">
+                        <option value="" disabled selected>Choose a Warehouse</option>
+                        <option value="Warehouse A">Warehouse A</option>
+                        <option value="Warehouse B">Warehouse B</option>
+                        <option value="Warehouse C">Warehouse C</option>
+                        <option value="Warehouse D">Warehouse D</option>
+                    </select>
+                </div>
             </div>
             <div class="container">
               <div class="audit-box" id="full-inventory">
                   <h2>Full Physical Inventory</h2>
                   <p>Status: <span id="inventory-status">Not Started</span></p>
-                  <button onclick="window.location.href='start-audit.html'">Start Audit</button>
+                  <button onclick="window.location.href='start-audit.html'">View</button>
               </div>
               <div class="audit-box" id="cycle-counting">
-                  <h2>Cycle Counting</h2>
+                  <h2>Inventory Analysis</h2>
                   <p>Status: <span id="cycle-status">Not Started</span></p>
-                  <button onclick="startAudit('Cycle Counting')">Start Audit</button>
-                  <button onclick="completeAudit('Cycle Counting')">Complete Audit</button>
+                  <button onclick="window.location.href='inventory-analysis.html'">Start Audit</button>
               </div>
               <div class="audit-box" id="spot-checks">
                   <h2>Spot Checks</h2>
@@ -57,6 +123,12 @@
                   <h2>Audit Activity Log</h2>
                   <ul class="audit-list" id="audit-log">
                       <li>No activity yet.</li>
+                  </ul>
+              </div>
+              <div class="recent-activity">
+                  <h2>Recent Audit Activity</h2>
+                  <ul id="audit-log">
+                      <!-- Audit activities will be inserted here -->
                   </ul>
               </div>
           </div>
@@ -80,12 +152,23 @@
             <div class="add-audit">
                 <h2>Add New Audit</h2>
                 <form id="audit-form">
-                    <input type="text" id="item_name" placeholder="Item Name" required>
-                    <input type="text" id="warehouse" placeholder="Warehouse" required>
+                    <input type="text" id="item_name" placeholder="Product Name" required>
+                    <input type="text" id="category" placeholder="Category" required>
+                    <input type="number" id="price" placeholder="Price" step="0.01" required>
                     <input type="number" id="quantity" placeholder="Quantity" required>
+                    <input type="text" id="brand" placeholder="Brand" required>
+                    <input type="number" id="sales_volume" placeholder="Sales Volume" required>
+                    <select id="warehouse" required>
+                        <option value="" disabled selected>Select Warehouse</option>
+                        <option value="Warehouse A">Warehouse A</option>
+                        <option value="Warehouse B">Warehouse B</option>
+                        <option value="Warehouse C">Warehouse C</option>
+                        <option value="Warehouse D">Warehouse D</option>
+                    </select>
                     <input type="text" id="status" placeholder="Status" required>
                     <button type="submit">Add Audit</button>
                 </form>
+                <div id="audit-result-message" style="margin-top: 15px; padding: 10px; display: none;"></div>
             </div>
         </section>
 
@@ -93,9 +176,225 @@
     <footer>
         <p>&copy; 2025 Warehouse Audit Systems</p>
     </footer>
-    <script src="script.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', fetchAudits);
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchAudits();
+            
+            // Add event listener for the form submission
+            const auditForm = document.getElementById('audit-form');
+            if (auditForm) {
+                auditForm.addEventListener('submit', handleAuditFormSubmit);
+            } else {
+                console.error("Audit form not found in the document");
+            }
+            
+            // Check for audit status updates
+            checkAuditStatus();
+
+            // Restore selected warehouse if available
+            const selectedWarehouse = localStorage.getItem('selected-warehouse');
+            if (selectedWarehouse) {
+                const warehouseSelect = document.getElementById('dashboard-warehouse-select');
+                if (warehouseSelect) {
+                    warehouseSelect.value = selectedWarehouse;
+                    selectWarehouse(selectedWarehouse);
+                }
+            }
+        });
+
+        async function handleAuditFormSubmit(event) {
+            event.preventDefault();
+            
+            const resultMessage = document.getElementById('audit-result-message');
+            resultMessage.style.display = 'block';
+            
+            // Format the data to match your blink.json structure
+            const newAuditData = {
+                index: generateNewIndex(), // Function to generate unique index
+                product: document.getElementById('item_name').value,
+                category: document.getElementById('category')?.value || "Uncategorized", // Add a category field to your form
+                price: parseFloat(document.getElementById('price')?.value || "0"),       // Add a price field to your form
+                quantity: parseInt(document.getElementById('quantity').value),
+                brand: document.getElementById('brand')?.value || "Generic",             // Add a brand field to your form
+                "sales volume": parseInt(document.getElementById('sales_volume')?.value || "0"), // Add sales_volume field
+                normalized_demand: calculateNormalizedDemand(
+                    parseInt(document.getElementById('sales_volume')?.value || "0")
+                ),
+                demand_category: determineDemandCategory(
+                    parseFloat(document.getElementById('normalized_demand')?.value || "0")
+                ),
+                inventory_strategy: determineInventoryStrategy(
+                    parseFloat(document.getElementById('normalized_demand')?.value || "0")
+                ),
+                warehouse: document.getElementById('warehouse').value,
+                status: document.getElementById('status').value,
+                audit_date: new Date().toISOString()
+            };
+            
+            try {
+                console.log('Submitting audit data:', newAuditData);
+                
+                // Save to localStorage for persistence
+                saveAuditToLocalStorage(newAuditData);
+                
+                // Add to the visible audit list
+                addAuditToList(newAuditData);
+                
+                // Update the audit log
+                document.getElementById('audit-log').innerHTML = 
+                    `<li>Added audit for ${newAuditData.product} at ${new Date().toLocaleString()}</li>` + 
+                    document.getElementById('audit-log').innerHTML;
+                
+                // Try to send to API if it's running
+                try {
+                    const response = await fetch('http://127.0.0.1:5000/api/audits', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(newAuditData)
+                    });
+                    
+                    if (response.ok) {
+                        resultMessage.innerHTML = `
+                            <div style="color: green; background: #e8f5e9; padding: 10px; border-radius: 4px;">
+                                Audit added successfully to the database!
+                            </div>`;
+                        fetchAudits(); // Refresh the list from server
+                    } else {
+                        const errorData = await response.json();
+                        console.warn('API returned error:', errorData);
+                        resultMessage.innerHTML = `
+                            <div style="color: #856404; background: #fff3cd; padding: 10px; border-radius: 4px;">
+                                Added locally only. Server message: ${errorData.error || errorData.message || 'Unknown error'}
+                            </div>
+                            <button id="download-json" style="margin-top: 10px; padding: 8px 16px;">Download JSON Data</button>`;
+                            
+                        // Add download button functionality
+                        document.getElementById('download-json').addEventListener('click', downloadJsonFile);
+                    }
+                } catch (apiError) {
+                    console.warn('API not available:', apiError);
+                    resultMessage.innerHTML = `
+                        <div style="color: #856404; background: #fff3cd; padding: 10px; border-radius: 4px;">
+                            Added locally only. API not available (${apiError.message})
+                        </div>
+                        <button id="download-json" style="margin-top: 10px; padding: 8px 16px;">Download JSON Data</button>`;
+                        
+                    // Add download button functionality
+                    document.getElementById('download-json').addEventListener('click', downloadJsonFile);
+                }
+                
+                // Reset the form
+                document.getElementById('audit-form').reset();
+                
+            } catch (error) {
+                console.error('Error in audit submission:', error);
+                resultMessage.innerHTML = `<div style="color: #721c24; background: #f8d7da; padding: 10px; border-radius: 4px;">
+                    Error adding audit: ${error.message}</div>`;
+            }
+        }
+
+        // Helper functions to support the form submission
+        function generateNewIndex() {
+            // Get existing data
+            const storedData = localStorage.getItem('blink_inventory_data');
+            const inventoryData = storedData ? JSON.parse(storedData) : [];
+            
+            // Find the maximum index
+            let maxIndex = 0;
+            inventoryData.forEach(item => {
+                const index = parseInt(item.index);
+                if (index > maxIndex) maxIndex = index;
+            });
+            
+            // Return next index
+            return maxIndex + 1;
+        }
+
+        function calculateNormalizedDemand(salesVolume) {
+            // Get highest sales volume for normalization
+            const storedData = localStorage.getItem('blink_inventory_data');
+            const inventoryData = storedData ? JSON.parse(storedData) : [];
+            
+            let maxSalesVolume = 50; // Default if no data
+            
+            inventoryData.forEach(item => {
+                const volume = parseInt(item['sales volume'] || 0);
+                if (volume > maxSalesVolume) maxSalesVolume = volume;
+            });
+            
+            // Normalize
+            return salesVolume / maxSalesVolume;
+        }
+
+        function determineDemandCategory(normalizedDemand) {
+            if (normalizedDemand >= 0.5) return "High Demand";
+            if (normalizedDemand >= 0.3) return "Medium Demand";
+            return "Low Demand";
+        }
+
+        function determineInventoryStrategy(normalizedDemand) {
+            if (normalizedDemand >= 0.5) return "Central warehouse, closest to delivery hubs";
+            if (normalizedDemand >= 0.3) return "Regional warehouses, moderate priority";
+            return "Stored in secondary locations, replenished as needed";
+        }
+
+        function saveAuditToLocalStorage(auditData) {
+            // Get existing data
+            const storedData = localStorage.getItem('blink_inventory_data');
+            const inventoryData = storedData ? JSON.parse(storedData) : [];
+            
+            // Add new data
+            inventoryData.push(auditData);
+            
+            // Save back to localStorage
+            localStorage.setItem('blink_inventory_data', JSON.stringify(inventoryData));
+        }
+
+        function downloadJsonFile() {
+            const storedData = localStorage.getItem('blink_inventory_data');
+            if (!storedData) {
+                alert('No data to download');
+                return;
+            }
+            
+            // Format the JSON data nicely
+            const formattedData = JSON.stringify(JSON.parse(storedData), null, 2);
+            
+            // Create a blob and download link
+            const blob = new Blob([formattedData], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'blink.json';
+            document.body.appendChild(a);
+            a.click();
+            
+            // Clean up
+            setTimeout(() => {
+                URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+            }, 0);
+        }
+
+        // Function to add an audit to the list without requiring the API
+        function addAuditToList(auditData) {
+            const auditList = document.getElementById('audit-list');
+            
+            if (auditList) {
+                const li = document.createElement('li');
+                const now = new Date().toLocaleString();
+                
+                li.textContent = `${auditData.item_name} - ${auditData.warehouse} - ${auditData.quantity} - ${auditData.status} (${now})`;
+                
+                // Add to the beginning of the list for better visibility
+                if (auditList.firstChild) {
+                    auditList.insertBefore(li, auditList.firstChild);
+                } else {
+                    auditList.appendChild(li);
+                }
+            }
+        }
 
         function showSection(sectionId) {
             const sections = document.querySelectorAll('.section');
@@ -121,44 +420,94 @@
             }
         }
 
-        document.getElementById('audit-form').addEventListener('submit', async function (event) {
-            event.preventDefault();
-
-            let auditData = {
-                item_name: document.getElementById('item_name').value,
-                warehouse: document.getElementById('warehouse').value,
-                quantity: document.getElementById('quantity').value,
-                status: document.getElementById('status').value
-            };
-
-            try {
-                let response = await fetch('http://127.0.0.1:5000/api/audits', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(auditData)
-                });
-
-                if (response.ok) {
-                    alert('Audit added successfully');
-                    fetchAudits();
-                    document.getElementById('audit-form').reset();
-                } else {
-                    let errorData = await response.json();
-                    alert(`Error adding audit: ${errorData.error || errorData.message}`);
-                }
-            } catch (error) {
-                alert('Error adding audit. Please check the console for more details.');
-                console.error('Error adding audit:', error);
-            }
-        });
-
         function startAudit(type) {
+            // Special case for Cycle Counting - redirect to inventory analysis page
+            if (type === 'Cycle Counting') {
+                window.location.href = 'inventory-analysis.html';
+                return;
+            }
+            
+            // For other audit types
             document.getElementById(type.toLowerCase().replace(/ /g, '-') + '-status').textContent = 'In Progress';
-            document.getElementById('audit-log').innerHTML += `<li>Started ${type} at ${new Date().toLocaleString()}</li>`;
+            document.getElementById('audit-log').innerHTML = 
+                `<li>Started ${type} at ${new Date().toLocaleString()}</li>` + 
+                document.getElementById('audit-log').innerHTML;
         }
+
         function completeAudit(type){
             document.getElementById(type.toLowerCase().replace(/ /g, '-') + '-status').textContent = 'Completed';
             document.getElementById('audit-log').innerHTML += `<li>Completed ${type} at ${new Date().toLocaleString()}</li>`;
+        }
+
+        // Add this function to your existing script section
+        function checkAuditStatus() {
+            // Check cycle counting status first
+            const cycleStatus = localStorage.getItem('cycle-counting-status');
+            if (cycleStatus) {
+                const statusElement = document.getElementById('cycle-status');
+                if (statusElement) {
+                    statusElement.textContent = cycleStatus;
+                    
+                    // Add visual indication if completed
+                    if (cycleStatus === 'Completed') {
+                        statusElement.style.color = 'green';
+                        statusElement.style.fontWeight = 'bold';
+                    }
+                }
+            }
+            
+            // Check if any audit action was recorded
+            const auditAction = localStorage.getItem('audit-action');
+            if (auditAction) {
+                // Get the timestamp or use current time
+                let actionTime = new Date().toLocaleString();
+                const storedTime = localStorage.getItem('audit-action-time');
+                if (storedTime) {
+                    actionTime = new Date(storedTime).toLocaleString();
+                }
+                
+                // Add to the audit log if it exists
+                const auditLog = document.getElementById('audit-log');
+                if (auditLog) {
+                    auditLog.innerHTML = `<li>${auditAction} at ${actionTime}</li>` + auditLog.innerHTML;
+                }
+                
+                // Clear the stored action to prevent duplicate entries
+                localStorage.removeItem('audit-action');
+                localStorage.removeItem('audit-action-time');
+            }
+        }
+
+        // Add this function to your script section
+
+        function selectWarehouse(warehouseValue) {
+            if (!warehouseValue) return;
+            
+            console.log(`Selected warehouse: ${warehouseValue}`);
+            
+            // Store the selected warehouse in localStorage
+            localStorage.setItem('selected-warehouse', warehouseValue);
+            
+            // Update any UI elements that should reflect the selected warehouse
+            document.querySelectorAll('.warehouse-dependent').forEach(element => {
+                element.textContent = element.textContent.replace(/Warehouse [A-D]/, warehouseValue);
+            });
+            
+            // Add to the audit log
+            const auditLog = document.getElementById('audit-log');
+            if (auditLog) {
+                const now = new Date().toLocaleString();
+                auditLog.innerHTML = `<li>Selected ${warehouseValue} at ${now}</li>` + auditLog.innerHTML;
+            }
+            
+            // Optional: Pre-select this warehouse in the Add Audit form
+            const auditFormWarehouseSelect = document.getElementById('warehouse');
+            if (auditFormWarehouseSelect) {
+                auditFormWarehouseSelect.value = warehouseValue;
+            }
+            
+            // You could also load warehouse-specific data here
+            // fetchWarehouseData(warehouseValue);
         }
     </script>
 </body>
