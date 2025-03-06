@@ -124,11 +124,11 @@ cd fantastic4
 
 ---
 
-## **🔗 Connect with Me**  
+## **🔗 Contrbutors**  
 If you have any questions or suggestions, feel free to reach out!  
 
-📌 **GitHub:** [Rahul Kakkar](https://github.com/rahulkakkar01)
-📌 **GitHub:** [PriyanshuKSharma](https://github.com/PriyanshuKSharma)
-📌 **GitHub:** [Prajwal Ulli](https://github.com/PrajwalUlli)
-📌 **GitHub:** [Gaurav Salunke](https://github.com/Gaurav5442) 
-📌 **GitHub:** [Aniruddha Deshmukh](https://github.com/ani9730)
+📌 **GitHub:** [Rahul Kakkar](https://github.com/rahulkakkar01) <br>
+📌 **GitHub:** [PriyanshuKSharma](https://github.com/PriyanshuKSharma) <br>
+📌 **GitHub:** [Prajwal Ulli](https://github.com/PrajwalUlli)<br>
+📌 **GitHub:** [Gaurav Salunke](https://github.com/Gaurav5442) <br>
+📌 **GitHub:** [Aniruddha Deshmukh](https://github.com/ani9730)<br>
